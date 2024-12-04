@@ -36,6 +36,12 @@ class CandidatoController extends Controller
         return view('admin.candidato.create', compact('cidades', 'estados'));
     }
 
+    public function store(Request $request) {
+        
+        dd($request->all());
+
+    }
+
     public function destroy($id)
     {
         $candidato = Candidato::findOrFail($id);
