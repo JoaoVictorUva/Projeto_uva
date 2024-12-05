@@ -8,6 +8,12 @@
                 <div class="mt-2">
                     <form class="grid grid-cols-1 gap-4" action="{{ route('candidato.store') }}" method="post">
                         @csrf
+
+                        @if($errors)
+                           
+                             @dump($errors->all())
+                        @endif
+
                         <div>
                             <div>   
                                 <label for="nome_completo" class="block text-sm font-medium text-gray-700 dark:text-white">Nome Completo</label>
