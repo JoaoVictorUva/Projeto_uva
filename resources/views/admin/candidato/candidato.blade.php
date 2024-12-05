@@ -85,8 +85,14 @@
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nome_mae }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->endereco }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->bairro }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->raca_id }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->estado_civil_id }}</td>
+
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
+                                        {{ collect($racas)->firstWhere('id', 2)['descricao'] ?? 'Raça não especificada' }}
+                                    </td>
+
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
+                                        {{ collect($estadosCivis)->firstWhere('id', $candidato->estado_civil_id)['descricao'] ?? 'Estado civil não especificado' }}
+                                    </td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
                                         {{ collect($estados)->firstWhere('id', $candidato->estado_id)['nome'] ?? 'Estado não encontrado' }}
@@ -96,7 +102,7 @@
                                         {{ collect($cidades)->firstWhere('id', $candidato->cidade_id)['nome'] ?? 'Cidade não encontrada' }}    
                                     </td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ $candidato->nascimento_pais_id    }}   
+                                        {{ $candidato->nascimento_pais_id == 1 ? 'Brasil' : 'Outro País' }}   
                                     </td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
@@ -107,13 +113,13 @@
                                         {{ collect($cidades)->firstWhere('id', $candidato->nascimento_cidade_id)['nome'] ?? 'Cidade não encontrada' }}
                                     </td>
 
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="cep">{{ $candidato->cep }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="telefone">{{ $candidato->telefone }}</td>
+                                    <td class=" px-4 py-2 dark:text-white whitespace-nowrap" ><span class="cep">{{ $candidato->cep }}</span></td>
+                                    <td class="telefone px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->telefone }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->email }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nacionalidade }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="cpf">{{ $candidato->cpf }}</td>
+                                    <td class="cpf px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->cpf }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="rg">{{ $candidato->rg }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="data"   >{{ $candidato->data_expedicao }}</td>
+                                    <td class="data px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->data_expedicao }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->orgao_expeditor }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->uf_expedicao }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->escolaridade }}</td>
