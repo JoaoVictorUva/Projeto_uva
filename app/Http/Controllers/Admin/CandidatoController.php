@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Candidato;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
 
 class CandidatoController extends Controller
 {
@@ -52,29 +49,28 @@ class CandidatoController extends Controller
     public function store(Request $request) {
         
         $validacao = $request->validate([
-            'raca_id' => 'required',
-            'estado_id' => 'required',
+           
             'nome_completo' => 'required|string|max:255',
             'nome_pai' => 'nullable|string|max:255', // Campo Nome do Pai
             'nome_mae' => 'required|string|max:255', // Campo Nome da Mãe
             'email' => 'required|email|unique:candidatos,email',
             'senha' => 'required|string|min:8',
-            'cpf' => 'required|string|size:11|unique:candidatos,cpf',
+            'cpf' => 'required|string|size:14|unique:candidatos,cpf',
             'telefone' => 'nullable|string',
-            'cidade_id' => 'required|exists:cidades,id',
-            'raca_id' => 'required|exists:racas,id',
+            'cidade_id' => 'required',
+            'raca_id' => 'required',
             'rg' => 'required|string|max:15',
             'nacionalidade' => 'required|string|max:255',
-            'nascimento_pais_id' => 'required|exists:paises,id', // País de Nascimento
-            'estado_nascimento_id' => 'required|exists:estados,id',
-            'nascimento_cidade_id' => 'required|exists:cidades,id',
-            'estado_id' => 'required|exists:estados,id', // Estado de residência
+            'nascimento_pais_id' => 'required', // País de Nascimento
+            'estado_nascimento_id' => 'required',
+            'nascimento_cidade_id' => 'required',
+            'estado_id' => 'required', // Estado de residência
             'bairro' => 'required|string|max:255', // Bairro
             'endereco' => 'required|string|max:255', // Endereço
             'cep' => 'required|string|size:8',
             'deficiencia' => 'required|boolean',
             'sexo' => 'required|string|max:1',
-            'estado_civil_id' => 'required|exists:estados_civis,id',
+            'estado_civil_id' => 'required',
             'data_expedicao' => 'required|date',
             'orgao_expeditor' => 'required|string|max:50',
             'uf_expedicao' => 'required|string|size:2',
