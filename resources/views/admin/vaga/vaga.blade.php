@@ -43,7 +43,7 @@
                     <table class="table-auto w-full my-3">
                         <thead class="border-t bg-transparent dark:bg-transparent my-2">
                             <tr class="border-b border-gray-300 ">
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Selçãao</td>
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Seleção</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Cargo</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Curso</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Area</td>
