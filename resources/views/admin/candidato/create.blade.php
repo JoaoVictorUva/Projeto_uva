@@ -9,7 +9,7 @@
                     <form class="grid grid-cols-1 gap-4" action="{{ route('candidato.store') }}" method="post">
                         @csrf
                         <div>
-                            <div>
+                            <div>   
                                 <label for="nome_completo" class="block text-sm font-medium text-gray-700 dark:text-white">Nome Completo</label>
                                 <input type="text" id="nome_completo" name="nome_completo" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Nome Completo">
                             </div>
@@ -39,7 +39,7 @@
 
                             <div>
                                 <label for="rg" class="block text-sm font-medium text-gray-700 dark:text-white ">RG</label>
-                                <input type="text" id="rg" name="rg" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="__.___.___-_">
+                                <input type="text" id="rg" name="rg" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
                             </div>
   
                         </div>
@@ -54,6 +54,7 @@
                                 <label for="nascimento_pais_id" class="block text-sm font-medium text-gray-700 dark:text-white ">País de Nascimento</label>
                                 <select id="nascimento_pais_id" name="nascimento_pais_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
                                     <option value="">Selecione</option>
+                                    <option value="1">Brasil</option>
                                 </select>
                             </div>
 
@@ -67,7 +68,7 @@
                             <div>
                                 <label for="nascimento_cidade_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Cidade de Nascimento</label>
                                 <select id="nascimento_cidade_id" name="nascimento_cidade_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="">Selecione</option>
+                                    <option value="">Selecione um estado de nascimento</option>
                                 </select>
                             </div>
 
@@ -81,7 +82,7 @@
                             <div>
                                 <label for="cidade_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Cidade</label>
                                 <select id="cidade_id" name="cidade_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="">Selecione</option>
+                                    <option value="">Selecione um estado</option>
                                 </select>
                             </div>
 
@@ -122,15 +123,14 @@
 
                             <div>
                                 <label for="raca_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Raça</label>
-                                <select id="raca_id" name="raca_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="">Selecione</option>
+                                <select id="raca_id" name="raca_id" required  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
                                 </select>
                             </div>
 
                             <div>
                                 <label for="estado_civil_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado Civil</label>
                                 <select id="estado_civil_id" name="estado_civil_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="">Selecione</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -195,7 +195,19 @@
 
                             <div>
                                 <label for="escolaridade" class="block text-sm font-medium text-gray-700 dark:text-white">Escolaridade</label>
-                                <input type="text" id="escolaridade" name="escolaridade" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="escolaridade" name="escolaridade" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                    <option value="">Selecione a escolaridade</option>
+                                    <option value="Fundamental">Fundamental Completo</option>
+                                    <option value="Fundamental Incompleto">Fundamental Incompleto</option>
+                                    <option value="Medio">Médio Completo</option>
+                                    <option value="Medio Incompleto">Médio Incompleto</option>
+                                    <option value="Superior">Superior Completo</option>
+                                    <option value="Superior Incompleto">Superior Incompleto</option>
+                                    <option value="Pos Graduacao">Pós-Graduação</option>
+                                    <option value="Pos Graduacao Incompleto">Pós-Graduação Incompleto</option>
+                                    <option value="Mestrado">Mestrado</option>
+                                    <option value="Doutorado">Doutorado</option>
+                                </select>
                             </div>
 
                         </div>
@@ -264,6 +276,44 @@
                                 option.textContent = estado.nome;
                                 estadoSelect.appendChild(option);
                             });
+
+                            
+                            const racas = @json($racas); 
+                            const estadosCivis = @json($estadosCivis);
+
+                            // Função para carregar as raças no select
+                            function carregarRacas(selectId) {
+                                const racaSelect = document.getElementById(selectId);
+                                racaSelect.innerHTML = '<option value="">Selecione uma raça</option>'; // Limpa opções anteriores
+
+                                racas.forEach(raca => {
+                                    const option = document.createElement('option');
+                                    option.value = raca.id;
+                                    option.textContent = raca.descricao;
+                                    racaSelect.appendChild(option);
+                                });
+                            }
+
+                            // Função para carregar os estados civis no select
+                            function carregarEstadosCivis(selectId) {
+                                const estadoCivilSelect = document.getElementById(selectId);
+                                estadoCivilSelect.innerHTML = '<option value="">Selecione um estado civil</option>'; // Limpa opções anteriores
+
+                                estadosCivis.forEach(estadoCivil => {
+                                    const option = document.createElement('option');
+                                    option.value = estadoCivil.id;
+                                    option.textContent = estadoCivil.descricao;
+                                    estadoCivilSelect.appendChild(option);
+                                });
+                            }
+
+                            // Carregar as raças no select de raças
+                            carregarRacas('raca_id');
+
+                            // Carregar os estados civis no select de estados civis
+                            carregarEstadosCivis('estado_civil_id');
+
+
                         </script>
 
                     </form>

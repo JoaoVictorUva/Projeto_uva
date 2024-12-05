@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var cepElement = document.getElementById("cep");
+    var cepElement = document.getElementsByClassName('cep');
+
+    console.log(cepElement);
 
     if (cepElement) {
         // Cria uma nova instância do Inputmask para a máscara de CEP
@@ -23,21 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var cpfElement = document.getElementById('cpf');
+    var cpfElement = document.getElementsByClassName('cpf');
     mask.mask(cpfElement);
 
 
-    var mask = new Inputmask({
-        mask: '99.999.999-9',
-        greedy: false,  // Evita que a máscara preencha com o '_'
-        onincomplete: function () {
-            // Remove o '_' caso o número não esteja completo
-            this.el.inputmask.setValue(this.el.inputmask.unmaskedvalue().slice(0, -1));
-        }
-    });
 
-    var rgElement = document.getElementById('rg');
-    mask.mask(rgElement);
 
     var mask = new Inputmask({
         mask: ['(99) 9999-9999', '(99) 99999-9999'], // Permite tanto com 9 dígitos quanto sem
@@ -48,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var telefoneElement = document.getElementById('telefone');
+    var telefoneElement = document.getElementsByClassName('telefone');
     mask.mask(telefoneElement);
 
     var mask = new Inputmask('99/99/9999', {
@@ -59,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var dataElement = document.getElementById('data');
+    var dataElement = document.getElementsByClassName('data');
     var dataIncricaoInicio = document.getElementById('inscricao_inicio');
     var dataIncricaoFim = document.getElementById('inscricao_fim');
 

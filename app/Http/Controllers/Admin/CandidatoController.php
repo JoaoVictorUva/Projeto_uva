@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Candidato;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class CandidatoController extends Controller
 {
@@ -15,19 +18,23 @@ class CandidatoController extends Controller
         $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
         $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();
 
+        $racas = Http::get(url('http://127.0.0.1:8000/racas'))->json();
+        $estadosCivis = Http::get(url('http://127.0.0.1:8000/estados-civis'))->json(); 
+
         $busca = request()->busca;
+
 
         if ($busca) {
 
             $candidatos = Candidato::where('nome_completo', 'like', '%' . $busca . '%')->get();
-            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados'));
+            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
         
         }else{
             // Buscar todos os candidatos  no banco
             $candidatos = Candidato::all();
         
             // Retornar a view com os dados de candidatos e cidades
-            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados'));
+            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
         }
         
     }
@@ -35,13 +42,18 @@ class CandidatoController extends Controller
     public function createAdd() {
         $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
         $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();
-        return view('admin.candidato.create', compact('cidades', 'estados'));
+        
+        $racas = Http::get(url('http://127.0.0.1:8000/racas'))->json();
+        $estadosCivis = Http::get(url('http://127.0.0.1:8000/estados-civis'))->json(); 
+
+        return view('admin.candidato.create', compact('cidades', 'estados' ,'racas', 'estadosCivis'));
     }
 
     public function store(Request $request) {
         
-        // Validação dos dados recebidos
-        $validatedData = $request->validate([
+        $validacao = $request->validate([
+            'raca_id' => 'required',
+            'estado_id' => 'required',
             'nome_completo' => 'required|string|max:255',
             'nome_pai' => 'nullable|string|max:255', // Campo Nome do Pai
             'nome_mae' => 'required|string|max:255', // Campo Nome da Mãe
@@ -69,48 +81,41 @@ class CandidatoController extends Controller
             'escolaridade' => 'required|string|max:255',
         ]);
 
-        // Removendo máscaras dos dados
-        $cpfSemMascara = preg_replace('/\D/', '', $validatedData['cpf']);
-        $telefoneSemMascara = preg_replace('/\D/', '', $validatedData['telefone'] ?? '');
-        $rgSemMascara = preg_replace('/\D/', '', $validatedData['rg']);
-        $cepSemMascara = preg_replace('/\D/', '', $validatedData['cep']);
+        $cpfSemMascara = preg_replace('/\D/', '', $validacao['cpf']);
+        $telefoneSemMascara = preg_replace('/\D/', '', $validacao['telefone'] ?? '');
+        $rgSemMascara = preg_replace('/\D/', '', $validacao['rg']);
+        $cepSemMascara = preg_replace('/\D/', '', $validacao['cep']);
 
-
-        // Instanciando um novo candidato
         $candidato = new Candidato();
-
-        // Atribuindo valores aos campos
-        $candidato->nome_completo = $validatedData['nome_completo'];
-        $candidato->nome_pai = $validatedData['nome_pai'] ?? null;
-        $candidato->nome_mae = $validatedData['nome_mae'];
-        $candidato->email = $validatedData['email'];
-        $candidato->senha = Hash::make($validatedData['senha']); // Criptografar senha
-        $candidato->cpf = Hash::make($cpfSemMascara); // Criptografar CPF
-        $candidato->telefone = $telefoneSemMascara;
-        $candidato->rg = Hash::make($rgSemMascara); // Criptografar RG
-        $candidato->nacionalidade = $validatedData['nacionalidade'];
-        $candidato->nascimento_pais_id = $validatedData['nascimento_pais_id'];
-        $candidato->estado_nascimento_id = $validatedData['estado_nascimento_id'];
-        $candidato->nascimento_cidade_id = $validatedData['nascimento_cidade_id'];
-        $candidato->estado_id = $validatedData['estado_id'];
-        $candidato->bairro = $validatedData['bairro'];
-        $candidato->endereco = $validatedData['endereco'];
+        $candidato->raca_id = $request->raca_id;
+        $candidato->estado_civil_id = $request->estado_civil_id;
+        $candidato->estado_id = $request->estado_id;
+        $candidato->cidade_id = $request->cidade_id;
+        $candidato->nascimento_pais_id = $request->nascimento_pais_id;
+        $candidato->estado_nascimento_id = $request->estado_nascimento_id;
+        $candidato->nascimento_cidade_id = $request->nascimento_cidade_id;
+        $candidato->nome_completo = $request->nome_completo;
+        $candidato->sexo = $request->sexo;
+        $candidato->deficiencia = $request->deficiencia;
+        $candidato->nome_pai = $request->nome_pai;
+        $candidato->nome_mae = $request->nome_mae;
+        $candidato->endereco = $request->endereco;
+        $candidato->bairro = $request->bairro;
         $candidato->cep = $cepSemMascara;
-        $candidato->deficiencia = $validatedData['deficiencia'];
-        $candidato->sexo = $validatedData['sexo'];
-        $candidato->estado_civil_id = $validatedData['estado_civil_id'];
-        $candidato->data_expedicao = $validatedData['data_expedicao'];
-        $candidato->orgao_expeditor = $validatedData['orgao_expeditor'];
-        $candidato->uf_expedicao = $validatedData['uf_expedicao'];
-        $candidato->escolaridade = $validatedData['escolaridade'];
-
-        // Salvando o candidato no banco de dados
+        $candidato->telefone = $telefoneSemMascara;
+        $candidato->email = $request->email;
+        $candidato->nacionalidade = $request->nacionalidade;
+        $candidato->cpf = $cpfSemMascara;
+        $candidato->rg = $rgSemMascara;
+        $candidato->data_expedicao = $request->data_expedicao;
+        $candidato->orgao_expeditor = $request->orgao_expeditor;
+        $candidato->uf_expedicao = $request->uf_expedicao;
+        $candidato->escolaridade = $request->escolaridade;
+        $candidato->senha =Hash::make($request->senha);
         $candidato->save();
 
-        return response()->json([
-            'message' => 'Candidato criado com sucesso!',
-            'candidato' => $candidato
-        ], 201);
+        return redirect()->route('candidato')->with('success', 'Candidato cadastrado com sucesso.');
+
     }
 
     public function destroy($id)

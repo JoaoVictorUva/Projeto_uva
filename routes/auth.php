@@ -40,6 +40,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
+    
+
     Route::prefix('candidatos')->group(function () {
 
         Route::get('/', [CandidatoController::class, 'index'])->name('candidato');

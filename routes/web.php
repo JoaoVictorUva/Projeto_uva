@@ -17,4 +17,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//APIS criadas para o projeto
+Route::get('/racas', function () {
+    return response()->json([
+        ['id' => 1, 'descricao' => 'Branca'],
+        ['id' => 2, 'descricao' => 'Preta'],
+        ['id' => 3, 'descricao' => 'Parda'],
+        ['id' => 4, 'descricao' => 'Amarela'],
+        ['id' => 5, 'descricao' => 'Indígena'],
+    ]);
+});
+
+Route::get('/estados-civis', function () {
+    return response()->json([
+        ['id' => 1, 'descricao' => 'Solteiro(a)'],
+        ['id' => 2, 'descricao' => 'Casado(a)'],
+        ['id' => 3, 'descricao' => 'Divorciado(a)'],
+        ['id' => 4, 'descricao' => 'Viúvo(a)'],
+        ['id' => 5, 'descricao' => 'União Estável'],
+    ]);
+});
+
 require __DIR__.'/auth.php';
