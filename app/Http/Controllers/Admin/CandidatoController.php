@@ -28,8 +28,8 @@ class CandidatoController extends Controller
         
         }else{
             // Buscar todos os candidatos  no banco
-            $candidatos = Candidato::all();
-        
+            $candidatos = Candidato::paginate(2);
+           
             // Retornar a view com os dados de candidatos e cidades
             return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
         }
@@ -112,6 +112,20 @@ class CandidatoController extends Controller
 
         return redirect()->route('candidato')->with('success', 'Candidato cadastrado com sucesso.');
 
+    }
+
+
+    public function show($id)
+    {   
+        $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
+        $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();
+        
+        $racas = Http::get(url('http://127.0.0.1:8000/racas'))->json();
+        $estadosCivis = Http::get(url('http://127.0.0.1:8000/estados-civis'))->json(); 
+
+        $candidato = Candidato::findOrFail($id);
+
+        return view('admin.candidato.edit', compact('candidato', 'cidades', 'estados', 'racas', 'estadosCivis'));
     }
 
     public function destroy($id)
