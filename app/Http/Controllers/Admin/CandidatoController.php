@@ -115,7 +115,7 @@ class CandidatoController extends Controller
     }
 
 
-    public function show($id)
+    public function edit($id)
     {   
         $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
         $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();

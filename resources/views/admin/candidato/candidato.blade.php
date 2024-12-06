@@ -126,7 +126,7 @@
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->uf_expedicao }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->escolaridade }}</td>
                                     <td class="px-4 flex gap-2 py-2 text-gray-500 dark:text-white whitespace-nowrap">
-                                        <a href="{{ route('candidato.show', $candidato->candidato_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
+                                        <a href="{{ route('candidato.edit', $candidato->candidato_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
                                         <form action="{{ route('candidato.destroy', $candidato->candidato_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                             @csrf
                                             @method('DELETE')

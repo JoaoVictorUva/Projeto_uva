@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
         Route::delete('/destroy/{id}', [CandidatoController::class, 'destroy'])->name('candidato.destroy');
 
-        Route::get('/{id}', [CandidatoController::class, 'show']);
+        Route::get('/{id}', [CandidatoController::class, 'edit'])->name('candidato.edit');
         Route::put('/update/{id}', [CandidatoController::class, 'update']);
     });
 
