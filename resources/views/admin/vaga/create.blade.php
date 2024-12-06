@@ -7,6 +7,7 @@
                 <div class="mt-2">
                     <form class="grid grid-cols-1 gap-4" action="{{ route('vaga.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="mb-4">
                             <label for="selecao_id" class="block text-sm font-medium text-gray-700">Seleção</label>
                             <select id="selecao_id" name="selecao_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
@@ -51,7 +52,7 @@
 
                             <div class="mb-4">
                                 <label for="valor_inscricao" class="block text-sm font-medium text-gray-700">Valor da Inscrição</label>
-                                <input type="number" id="valor_inscricao" name="valor_inscricao" step="0.01" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="text" id="valor_inscricao" name="valor_inscricao" step="0.01" required class="inscricao mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                             </div>
 
                             <div class="mb-4">

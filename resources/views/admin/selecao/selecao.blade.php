@@ -65,7 +65,6 @@
                         <thead class="border-t bg-white dark:bg-transparent">
                             <tr class="border-b border-gray-300 ">
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Titulo</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Edital</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Informações Gerais</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Inicio da Inscrição</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Fim da Inscrição</td>
@@ -78,21 +77,26 @@
                             @foreach($selecoes as $selecao)
                                 <tr class="border-b border-gray-300 bg-white hover:bg-gray-200 dark:bg-transparent">
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->titulo }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->edital }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->informacoes_gerais }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_inicio">{{ $selecao->inscricao_inicio }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_fim" >{{ $selecao->inscricao_fim }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->finalizado ? 'Sim' : 'Não' }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->resultado }}</td>
                                     <td class="px-4 text-left flex gap-2 text-gray-500 py-2 whitespace-nowrap">
+                                        @if($selecao->edital)
+                                            <a href="{{ asset( $selecao->edital) }}" target="_blank" class="bg-black px-2 py-2 rounded-md text-white">Edital</a>
+                                        @else
+                                            <a href="#" class="bg-black px-2 py-2 rounded-md text-white hover:cursor-not-allowed">Edital</a>
+                                        @endif
                                         <button class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</button>
                                         <form action="{{ route('selecao.destroy', $selecao->selecao_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="px-2 py-1 bg-red-500 text-white rounded-md">
+                                            <button type="submit" class="p-2 bg-red-500 text-white rounded-md">
                                                 Excluir
                                             </button>
                                         </form>
+
                                     </td>    
                                     </td>
                                 </tr>
