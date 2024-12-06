@@ -31,7 +31,34 @@ class VagaController extends Controller
 
     public function store(Request $request) {
 
-        $request->all();
+
+        $validacao = $request->validate([
+            'selecao_id' => 'required|exists:selecoes,selecao_id', 
+            'cargo_id' => 'required|integer',            
+            'curso_id' => 'required|integer',           
+            'area_id' => 'required|integer',             
+            'tipo_concorrencia' => 'required|string|max:255',
+            'valor_inscricao' => 'required',
+            'total_vagas' => 'required|integer|min:1',            
+            'descricao' => 'required|string', 
+        ]);
+
+        $valorSemMascara = preg_replace('/\D/', '', $validacao['valor_inscricao']);
+
+        $vaga = new Vaga();
+        $vaga->selecao_id = $request->selecao_id;
+        $vaga->cargo_id = $request->cargo_id;
+        $vaga->curso_id = $request->curso_id;
+        $vaga->area_id = $request->area_id;
+        $vaga->tipo_concorrencia = $request->tipo_concorrencia;
+        $vaga->valor_inscricao = $valorSemMascara;
+        $vaga->total_vagas = $request->total_vagas;
+        $vaga->descricao = $request->descricao;
+        $vaga->save();
+
+        // Redireciona ou retorna uma resposta de sucesso
+        return redirect()->route('vaga')->with('success', 'Vaga cadastrada com sucesso!');
+
         
     }
 
