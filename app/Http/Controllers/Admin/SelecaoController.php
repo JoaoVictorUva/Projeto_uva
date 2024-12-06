@@ -28,41 +28,51 @@ class SelecaoController extends Controller
 
     public function store(Request $request)
     {
+        
         // Validação dos dados recebidos
-        $validatedData = $request->validate([
+        $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
-            'edital' => 'required|string|max:255',
+            'edital' => 'required|file|mimes:pdf|max:2048', // Validando como arquivo PDF
             'informacoes_gerais' => 'required|string',
             'inscricao_inicio' => 'required|date',
-            'inscricao_fim' => 'required|date|after_or_equal:inscricao_inicio', // A data de fim deve ser maior ou igual à de início
+            'inscricao_fim' => 'required|date|after_or_equal:inscricao_inicio',
             'exibir_edital' => 'required|boolean',
             'exibir_resultado_inscricao' => 'required|boolean',
             'finalizado' => 'required|boolean',
-            'resultado' => 'nullable|string', // O resultado pode ser opcional
+            'resultado' => 'nullable|string',
         ]);
 
-        // Instanciando um novo registro para a tabela selecoes
+
+
+       // Instanciando um novo registro para a tabela selecoes
         $selecao = new Selecao();
+        $selecao->titulo = $validacao['titulo'];
+        $selecao->informacoes_gerais = $validacao['informacoes_gerais'];
+        $selecao->inscricao_inicio = $validacao['inscricao_inicio'];
+        $selecao->inscricao_fim = $validacao['inscricao_fim'];
+        $selecao->exibir_edital = $validacao['exibir_edital'];
+        $selecao->exibir_resultado_inscricao = $validacao['exibir_resultado_inscricao'];
+        $selecao->finalizado = $validacao['finalizado'];
+        $selecao->resultado = $validacao['resultado'] ;
+       
+        
 
-        // Atribuindo os dados validados aos campos
-        $selecao->titulo = $validatedData['titulo'];
-        $selecao->edital = $validatedData['edital'];
-        $selecao->informacoes_gerais = $validatedData['informacoes_gerais'];
-        $selecao->inscricao_inicio = $validatedData['inscricao_inicio'];
-        $selecao->inscricao_fim = $validatedData['inscricao_fim'];
-        $selecao->exibir_edital = $validatedData['exibir_edital'];
-        $selecao->exibir_resultado_inscricao = $validatedData['exibir_resultado_inscricao'];
-        $selecao->finalizado = $validatedData['finalizado'];
-        $selecao->resultado = $validatedData['resultado'] ?? null; // O resultado pode ser nulo
+        // Salvando o arquivo na pasta public/documents
+        if ($request->hasFile('edital')) {
+            $file = $request->file('edital'); // Obtemos o arquivo
+            $destinationPath = 'documents'; // Caminho completo até a pasta "documents"
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Geramos um nome único para o arquivo
+            $path = $destinationPath . '/' . $fileName;
+            $file->move($destinationPath, $fileName); // Movemos o arquivo para "public/documents"
 
-        // Salvando o novo registro na tabela 'selecoes'
+            // Armazenamos o caminho relativo no banco de dados
+            $selecao->edital = $path;
+        }
+
         $selecao->save();
 
         // Retornando a resposta de sucesso
-        return response()->json([
-            'message' => 'Seleção criada com sucesso!',
-            'selecao' => $selecao
-        ], 201);
+        return redirect()->route('selecao')->with('success', 'Seleção cadastrada com sucesso!');
     }
 
     public function destroy($id)
