@@ -29,6 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
     mask.mask(cpfElement);
 
 
+    var mask = new Inputmask({
+        mask: 'R$ 99,99',
+        greedy: true,  // Evita que a máscara preencha com o '_'
+        onincomplete: function () {
+            // Remove o '_' caso o número não esteja completo
+            this.el.inputmask.setValue(this.el.inputmask.unmaskedvalue().slice(0, -1));
+        }
+    });
+
+    var valor = document.getElementsByClassName('inscricao');
+    mask.mask(valor);
+
+
 
 
     var mask = new Inputmask({
@@ -68,8 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var dataIncricaoInicio = document.getElementById('inscricao_inicio');
-    var dataIncricaoFim = document.getElementById('inscricao_fim');
+    var dataIncricaoInicio = document.querySelectorAll('#inscricao_inicio');
+    var dataIncricaoFim = document.querySelectorAll('#inscricao_fim');
 
     mask.mask(dataIncricaoInicio);
     mask.mask(dataIncricaoFim);
