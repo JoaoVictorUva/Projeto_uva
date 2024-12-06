@@ -62,7 +62,7 @@
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->curso_id }}</td>
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->area_id }}</td>
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->tipo_concorrencia }}</td>
-                                    <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->valor_inscricao }}</td>
+                                    <td class="inscricao px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->valor_inscricao }}</td>
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->total_vagas }}</td>
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->descricao }}</td>
                                     <td class="px-4 text-left flex gap-2 text-gray-500 py-2 whitespace-nowrap">
