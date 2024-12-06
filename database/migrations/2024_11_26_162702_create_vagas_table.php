@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('area_id');
 
             $table->string('tipo_concorrencia');
-            $table->float('valor_inscricao');
+            $table->integer('valor_inscricao');
             $table->integer('total_vagas');  
             $table->string('descricao');  
         });
