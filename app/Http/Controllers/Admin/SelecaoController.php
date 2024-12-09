@@ -75,6 +75,13 @@ class SelecaoController extends Controller
         return redirect()->route('selecao')->with('success', 'Seleção cadastrada com sucesso!');
     }
 
+    public function edit($id)
+    {   
+        $selecao = Selecao::findOrFail($id);
+
+        return view('admin.selecao.edit', compact('selecao'));
+    }
+
     public function update(Request $request, $id) 
     {
         // Localizar a seleção pelo ID
