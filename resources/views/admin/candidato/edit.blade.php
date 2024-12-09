@@ -156,8 +156,8 @@
                             <div>
                                 <label for="deficiencia" class="block text-sm font-medium text-gray-700 dark:text-white ">Possui Deficiência?</label>
                                 <select id="deficiencia" name="deficiencia" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="0">Não</option>
-                                    <option value="1">Sim</option>
+                                    <option value="0" value="m" @if(($candidato->deficiencia ?? old('deficiencia'))  == 0 ) selected @endif>Não</option>
+                                    <option value="1" value="m" @if(($candidato->deficiencia ?? old('deficiencia'))  == 1 ) selected @endif>Sim</option>
                                 </select>
                                 @error('deficiencia')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -294,7 +294,7 @@
 
                         <div>
                             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                Cadastrar
+                                Editar
                             </button>
                         </div>
 
