@@ -7,28 +7,30 @@ use Illuminate\Http\Request;
 
 use App\Models\Selecao;
 use App\Models\Vaga;
+
 class SelecaoController extends Controller
 {
-    public function index() {   
+    public function index()
+    {
         $busca = request()->busca;
         if ($busca) {
             $selecoes = Selecao::where('titulo', 'like', '%' . $busca . '%')->get();
             return view('admin.selecao.selecao', ['selecoes' => $selecoes]);
-        }else{
+        } else {
             $selecoes = Selecao::all();
 
             return view('admin.selecao.selecao', ['selecoes' => $selecoes]);
         }
-        
     }
 
-    public function createAdd() {
+    public function createAdd()
+    {
         return view('admin.selecao.create');
     }
 
     public function store(Request $request)
     {
-        
+
         // Validação dos dados recebidos
         $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
@@ -53,9 +55,9 @@ class SelecaoController extends Controller
         $selecao->exibir_edital = $validacao['exibir_edital'];
         $selecao->exibir_resultado_inscricao = $validacao['exibir_resultado_inscricao'];
         $selecao->finalizado = $validacao['finalizado'];
-        $selecao->resultado = $validacao['resultado'] ;
-       
-        
+        $selecao->resultado = $validacao['resultado'];
+
+
 
         // Salvando o arquivo na pasta public/documents
         if ($request->hasFile('edital')) {
@@ -76,18 +78,18 @@ class SelecaoController extends Controller
     }
 
     public function edit($id)
-    {   
+    {
         $selecao = Selecao::findOrFail($id);
 
         return view('admin.selecao.edit', compact('selecao'));
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         // Localizar a seleção pelo ID
         $selecao = Selecao::findOrFail($id);
 
-
+        
         // Validar os dados recebidos
         $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
@@ -131,17 +133,16 @@ class SelecaoController extends Controller
     }
 
     public function destroy($id)
-    {   
+    {
         $selecao = Selecao::findOrFail($id);
 
         $vaga = Vaga::where('selecao_id', $selecao->selecao_id)->first();
 
         if ($vaga) {
             return redirect()->route('selecao')->with('error', 'Seleção não pode ser excluída pois tem uma vaga associada a ela!');
-        }else{
+        } else {
             $selecao->delete();
             return redirect()->route('selecao')->with('success', 'Seleção excluída com sucesso.');
         }
     }
-
 }
