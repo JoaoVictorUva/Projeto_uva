@@ -177,7 +177,7 @@
 
                             <div>
                                 <label for="raca_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Raça</label>
-                                <select id="raca_id" name="raca_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="raca_id" name="raca_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 </select>
                                 @error('raca_id')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -186,7 +186,7 @@
 
                             <div>
                                 <label for="estado_civil_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado Civil</label>
-                                <select id="estado_civil_id" name="estado_civil_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="estado_civil_id" name="estado_civil_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                     
                                 </select>
                                 @error('estado_civil_id')
