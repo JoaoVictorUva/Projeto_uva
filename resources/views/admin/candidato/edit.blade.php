@@ -235,33 +235,33 @@
                                 <label for="uf_expedicao" class="block text-sm font-medium text-gray-700 dark:text-white">UF de Expedição</label>
                                 <select id="uf_expedicao" name="uf_expedicao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
                                     <option value="">Selecione</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                                    <option value="AC" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'AC' ) selected @endif >Acre</option>
+                                    <option value="AL" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'AL' ) selected @endif >Alagoas</option>
+                                    <option value="AP" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'AP' ) selected @endif >Amapá</option>
+                                    <option value="AM" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'AM' ) selected @endif >Amazonas</option>
+                                    <option value="BA" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'BA' ) selected @endif >Bahia</option>
+                                    <option value="CE" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'CE' ) selected @endif >Ceará</option>
+                                    <option value="DF" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'DF' ) selected @endif >Distrito Federal</option>
+                                    <option value="ES" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'ES' ) selected @endif >Espírito Santo</option>
+                                    <option value="GO" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'GO' ) selected @endif >Goiás</option>
+                                    <option value="MA" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'MA' ) selected @endif >Maranhão</option>
+                                    <option value="MT" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'MT' ) selected @endif >Mato Grosso</option>
+                                    <option value="MS" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'MS' ) selected @endif >Mato Grosso do Sul</option>
+                                    <option value="MG" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'MG' ) selected @endif >Minas Gerais</option>
+                                    <option value="PA" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'PA' ) selected @endif >Pará</option>
+                                    <option value="PB" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'PB' ) selected @endif >Paraíba</option>
+                                    <option value="PR" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'PR' ) selected @endif >Paraná</option>
+                                    <option value="PE" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'PE' ) selected @endif >Pernambuco</option>
+                                    <option value="PI" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'PI' ) selected @endif >Piauí</option>
+                                    <option value="RJ" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'RJ' ) selected @endif >Rio de Janeiro</option>
+                                    <option value="RN" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'RN' ) selected @endif >Rio Grande do Norte</option>
+                                    <option value="RS" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'RS' ) selected @endif >Rio Grande do Sul</option>
+                                    <option value="RO" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'RO' ) selected @endif >Rondônia</option>
+                                    <option value="RR" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'RR' ) selected @endif >Roraima</option>
+                                    <option value="SC" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'SC' ) selected @endif >Santa Catarina</option>
+                                    <option value="SP" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'SP' ) selected @endif >São Paulo</option>
+                                    <option value="SE" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'SE' ) selected @endif >Sergipe</option>
+                                    <option value="TO" @if(($candidato->uf_expedicao ?? old('uf_expedicao'))  == 'TO' ) selected @endif >Tocantins</option>
                                 </select>
                                 @error('uf_expedicao')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -271,17 +271,17 @@
                             <div>
                                 <label for="escolaridade" class="block text-sm font-medium text-gray-700 dark:text-white">Escolaridade</label>
                                 <select id="escolaridade" name="escolaridade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
-                                    <option value="">Selecione a escolaridade</option>
-                                    <option value="Fundamental">Fundamental Completo</option>
-                                    <option value="Fundamental Incompleto">Fundamental Incompleto</option>
-                                    <option value="Medio">Médio Completo</option>
-                                    <option value="Medio Incompleto">Médio Incompleto</option>
-                                    <option value="Superior">Superior Completo</option>
-                                    <option value="Superior Incompleto">Superior Incompleto</option>
-                                    <option value="Pos Graduacao">Pós-Graduação</option>
-                                    <option value="Pos Graduacao Incompleto">Pós-Graduação Incompleto</option>
-                                    <option value="Mestrado">Mestrado</option>
-                                    <option value="Doutorado">Doutorado</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == '' ) selected @endif value="">Selecione a escolaridade</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Fundamental' ) selected @endif value="Fundamental">Fundamental Completo</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Fundamental Incompleto' ) selected @endif value="Fundamental Incompleto">Fundamental Incompleto</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Medio' ) selected @endif value="Medio">Médio Completo</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Medio Incompleto' ) selected @endif value="Medio Incompleto">Médio Incompleto</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Superior' ) selected @endif value="Superior">Superior Completo</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Superior Incompleto' ) selected @endif value="Superior Incompleto">Superior Incompleto</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Pos Graduacao' ) selected @endif value="Pos Graduacao">Pós-Graduação</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Pos Graduacao Incompleto' ) selected @endif value="Pos Graduacao Incompleto">Pós-Graduação Incompleto</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Mestrado' ) selected @endif value="Mestrado">Mestrado</option>
+                                    <option @if(($candidato->escolaridade ?? old('escolaridade'))  == 'Doutorado' ) selected @endif value="Doutorado">Doutorado</option>
                                 </select>
                                 @error('escolaridade')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
