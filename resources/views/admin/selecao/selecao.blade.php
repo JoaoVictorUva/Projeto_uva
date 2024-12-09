@@ -12,52 +12,51 @@
                         </form>
 
                     </div>
-                    
+
                     <a href="{{ route('selecao.create') }}" class="bg-green-600 text-white font-bold rounded-md px-4 py-0.5 flex items-center justify-center">add +</a>
                 </div>
-                
+
                 @if(session('success'))
-                    <div id="successMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-green-600">
-                        {{ session('success') }}
-                    </div>
+                <div id="successMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-green-600">
+                    {{ session('success') }}
+                </div>
                 @endif
 
                 @if(session('error'))
-                    <div id="errorMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-red-600">
-                        {{ session('error') }}
-                    </div>
+                <div id="errorMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-red-600">
+                    {{ session('error') }}
+                </div>
                 @endif
 
                 <script>
                     // Verifica se há uma mensagem de sucesso
                     @if(session('success'))
-                        window.onload = function() {
-                            // Exibe a mensagem
-                            const message = document.getElementById('successMessage');
-                            message.classList.remove('hidden');
-                            
-                            // Esconde a mensagem após 4 segundos
-                            setTimeout(function() {
-                                message.classList.add('hidden');
-                            }, 4000);  
-                        }
+                    window.onload = function() {
+                        // Exibe a mensagem
+                        const message = document.getElementById('successMessage');
+                        message.classList.remove('hidden');
+
+                        // Esconde a mensagem após 4 segundos
+                        setTimeout(function() {
+                            message.classList.add('hidden');
+                        }, 4000);
+                    }
                     @endif
 
-                     // Verifica se há uma mensagem de error
-                     @if(session('error'))
-                        window.onload = function() {
-                            // Exibe a mensagem
-                            const message = document.getElementById('errorMessage');
-                            message.classList.remove('hidden');
-                            
-                            // Esconde a mensagem após 5 segundos
-                            setTimeout(function() {
-                                message.classList.add('hidden');
-                            }, 5000); 
-                        }
+                    // Verifica se há uma mensagem de error
+                    @if(session('error'))
+                    window.onload = function() {
+                        // Exibe a mensagem
+                        const message = document.getElementById('errorMessage');
+                        message.classList.remove('hidden');
+
+                        // Esconde a mensagem após 5 segundos
+                        setTimeout(function() {
+                            message.classList.add('hidden');
+                        }, 5000);
+                    }
                     @endif
                 </script>
-
 
                 <!-- Adicionando overflow-x-auto para rolagem horizontal -->
                 <div class="overflow-x-auto mt-2">
@@ -75,31 +74,31 @@
                         </thead>
                         <tbody>
                             @foreach($selecoes as $selecao)
-                                <tr class="border-b border-gray-300 bg-white hover:bg-gray-200 dark:bg-transparent">
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->titulo }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->informacoes_gerais }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_inicio">{{ $selecao->inscricao_inicio }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_fim" >{{ $selecao->inscricao_fim }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->finalizado ? 'Sim' : 'Não' }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->resultado }}</td>
-                                    <td class="px-4 text-left flex gap-2 text-gray-500 py-2 whitespace-nowrap">
-                                        @if($selecao->edital)
-                                            <a href="{{ asset( $selecao->edital) }}" target="_blank" class="bg-black px-2 py-2 rounded-md text-white">Edital</a>
-                                        @else
-                                            <a href="#" class="bg-black px-2 py-2 rounded-md text-white hover:cursor-not-allowed">Edital</a>
-                                        @endif
-                                        <a href="{{ route('selecao.edit', $selecao->selecao_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
-                                        <form action="{{ route('selecao.destroy', $selecao->selecao_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="p-2 bg-red-500 text-white rounded-md">
-                                                Excluir
-                                            </button>
-                                        </form>
+                            <tr class="border-b border-gray-300 bg-white hover:bg-gray-200 dark:bg-transparent">
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->titulo }}</td>
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->informacoes_gerais }}</td>
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_inicio">{{ $selecao->inscricao_inicio }}</td>
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="inscricao_fim">{{ $selecao->inscricao_fim }}</td>
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->finalizado ? 'Sim' : 'Não' }}</td>
+                                <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $selecao->resultado }}</td>
+                                <td class="px-4 text-left flex gap-2 text-gray-500 py-2 whitespace-nowrap">
+                                    @if($selecao->edital)
+                                    <a href="{{ asset( $selecao->edital) }}" target="_blank" class="bg-black px-2 py-2 rounded-md text-white">Edital</a>
+                                    @else
+                                    <a href="#" class="bg-black px-2 py-2 rounded-md text-white hover:cursor-not-allowed">Edital</a>
+                                    @endif
+                                    <a href="{{ route('selecao.edit', $selecao->selecao_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
+                                    <form action="{{ route('selecao.destroy', $selecao->selecao_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-2 bg-red-500 text-white rounded-md">
+                                            Excluir
+                                        </button>
+                                    </form>
 
-                                    </td>    
-                                    </td>
-                                </tr>
+                                </td>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -107,8 +106,8 @@
             </div>
             <script>
                 var mask = new Inputmask('99/99/9999', {
-                    greedy: false,  // Evita que a máscara preencha com '_'
-                    onincomplete: function () {
+                    greedy: false, // Evita que a máscara preencha com '_'
+                    onincomplete: function() {
                         // Remove o caractere '_' caso a data não seja preenchida completamente
                         this.el.inputmask.setValue(this.el.inputmask.unmaskedvalue().slice(0, -1));
                     }
