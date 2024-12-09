@@ -14,7 +14,7 @@
 
                     </div>
 
-                    <a href="{{ route('candidato.create') }}" class="bg-green-600 text-white font-bold rounded-md px-4 py-0.5 flex items-center justify-center">add +</a>
+                    <a href="{{ route('candidato.create') }}" class="bg-green-600 text-white font-bold rounded-md px-4 py-0.5 flex items-center justify-center">Novo +</a>
                 </div>
                 @if(session('success'))
                     <div id="successMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-green-600">

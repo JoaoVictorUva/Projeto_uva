@@ -12,7 +12,7 @@
                         
                     </div>
 
-                    <a href="{{ route('vaga.create') }}" class="bg-green-600 text-white font-bold rounded-md px-4 py-0.5 flex items-center justify-center">add +</a>
+                    <a href="{{ route('vaga.create') }}" class="bg-green-600 text-white font-bold rounded-md px-4 py-0.5 flex items-center justify-center">Novo +</a>
                 </div>
                 
                 @if(session('success'))
