@@ -66,7 +66,7 @@
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->total_vagas }}</td>
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->descricao }}</td>
                                     <td class="px-4 text-left flex gap-2 text-gray-500 py-2 whitespace-nowrap">
-                                        <button class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</button>
+                                        <a  href="{{ route('vaga.edit', $vaga->vaga_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
                                         <form action="{{ route('vaga.destroy', $vaga->vaga_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                             @csrf
                                             @method('DELETE')
