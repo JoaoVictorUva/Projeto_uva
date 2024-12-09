@@ -129,7 +129,7 @@ class SelecaoController extends Controller
         $selecao->save();
 
         // Retornar uma mensagem de sucesso
-        return redirect()->route('selecao')->with('success', 'Seleção atualizada com sucesso!');
+        return redirect()->route('selecao')->with('success', 'Seleção editada com sucesso!');
     }
 
     public function destroy($id)
