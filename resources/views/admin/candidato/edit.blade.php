@@ -301,12 +301,13 @@
                         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
                         <script>
                             window.addEventListener('load', function() {
-                                //const nacsEstadoId = @json($candidato->estado_nascimento_id);
-                                //const estado = @json($candidato->nascimento_cidade_id);
+                                const nacsEstadoId = @json($candidato->estado_nascimento_id);
+                                const estado = @json($candidato->nascimento_cidade_id);
 
                                 
 
                                 carregarCidades(nacsEStadoId, 'nascimento_cidade_id');
+                                carregarCidades(estadoId, 'cidade_id');
                                
                             });
 
@@ -318,6 +319,7 @@
                             const nascCidadeId = @json($candidato->nascimento_cidade_id);
                             const cidadeId = @json($candidato->cidade_id);
 
+                            console.log();
                             // Função para carregar as cidades do estado selecionado
                             function carregarCidades(estadoId, cidadeSelectId) {
                                 const cidadeSelect = document.getElementById(cidadeSelectId);
@@ -330,15 +332,22 @@
                                         option.textContent = cidade.nome;
                                         if (cidade.id == nascCidadeId) {
                                             option.selected = true;
+                                        }else if (cidade.id == cidadeId) {
+                                            option.selected = true;
                                         }
                                         cidadeSelect.appendChild(option);
                                     }
                                 });
                             }
 
-
-    
-
+                            document.getElementById('estado_nascimento_id').addEventListener('change', function () {
+                                const estadoId = this.value;
+                                if (estadoId) {
+                                    carregarCidades(estadoId, 'nascimento_cidade_id');
+                                } else {
+                                    document.getElementById('nascimento_cidade_id').innerHTML = '<option value="">Selecione</option>';
+                                }
+                            });
 
                             const nacsEstadoId = @json($candidato->estado_nascimento_id);
 
@@ -358,8 +367,17 @@
                             });
 
 
-                            const estadoId = @json($candidato->estado_id);
+                            // Evento no select de estado
+                            document.getElementById('estado_id').addEventListener('change', function () {
+                                const estadoId = this.value;
+                                if (estadoId) {
+                                    carregarCidades(estadoId, 'cidade_id');
+                                } else {
+                                    document.getElementById('cidade_id').innerHTML = '<option value="">Selecione</option>';
+                                }
+                            });
 
+                            const estadoId = @json($candidato->estado_id);
                             // Carregar os estados no select de estado
                             const estadoSelect = document.getElementById('estado_id');
                             estados.forEach(estado => {
