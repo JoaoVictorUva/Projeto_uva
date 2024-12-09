@@ -62,6 +62,13 @@ class VagaController extends Controller
         
     }
 
+    public function edit($id)
+    {
+        $vaga = Vaga::find($id);
+        $selecao = Selecao::all();
+        return view('admin.vaga.edit', ['vaga' => $vaga, 'selecoes' => $selecao]);
+    }
+
     public function destroy($id)
     {
         $vaga = Vaga::findOrFail($id);
