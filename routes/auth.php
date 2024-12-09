@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
         
         Route::delete('/destroy/{id}', [SelecaoController::class, 'destroy'])->name('selecao.destroy');
         Route::get('/{id}', [SelecaoController::class, 'edit'])->name('selecao.edit');
-        // Route::put('/update/{id}', [SelecaoController::class, 'update']);
+        Route::put('/update/{id}', [SelecaoController::class, 'update'])->name('selecao.update');
     });
     
     Route::prefix('vagas')->group(function () {
