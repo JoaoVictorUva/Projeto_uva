@@ -2,7 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 dark:border-none w-full px-3 py-2 rounded-md">
-                <h1 class="text-2xl font-bold my-2 dark:text-white">Atualizar Seleção</h1>
+                <h1 class="text-2xl font-bold my-2 dark:text-white">Editar Seleção</h1>
 
                 <!-- Adicionando overflow-x-auto para rolagem horizontal -->
                 <div class="mt-2">
@@ -71,13 +71,13 @@
 
                         <div class="mb-4">
                             <label for="resultado" class="block text-sm font-medium text-gray-700 dark:text-white ">Resultado</label>
-                            <textarea id="resultado" name="resultado" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea id="resultado" name="resultado" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"> {{ $selecao->resultado ?? old('resultado') }}</textarea>
                         </div>
 
                             
                         <div>
                             <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                Atualizar
+                                Editar
                             </button>
                         </div>
                     </form>
