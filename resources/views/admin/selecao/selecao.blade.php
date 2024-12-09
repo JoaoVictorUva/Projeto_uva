@@ -88,7 +88,7 @@
                                         @else
                                             <a href="#" class="bg-black px-2 py-2 rounded-md text-white hover:cursor-not-allowed">Edital</a>
                                         @endif
-                                        <button class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</button>
+                                        <a href="{{ route('selecao.edit', $selecao->selecao_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
                                         <form action="{{ route('selecao.destroy', $selecao->selecao_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                             @csrf
                                             @method('DELETE')
