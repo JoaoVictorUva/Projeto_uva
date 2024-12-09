@@ -12,7 +12,7 @@
                         <div>
                             <div>   
                                 <label for="nome_completo" class="block text-sm font-medium text-gray-700 dark:text-white">Nome Completo</label>
-                                <input type="text" id="nome_completo" name="nome_completo" class="@error('nome_completo') is-invalid @enderror mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Nome Completo">
+                                <input type="text" id="nome_completo" name="nome_completo" class="@error('nome_completo') is-invalid @enderror mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Nome Completo" valuer="{{ old('nome_completo') }}">
                                 @error('nome_completo')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -21,7 +21,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="nome_pai" class="block text-sm font-medium text-gray-700 dark:text-white ">Nome do Pai</label>
-                                <input type="text" id="nome_pai" name="nome_pai" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="nome_pai" name="nome_pai" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('nome_pai') }}">
                                 @error('nome_pai')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -29,7 +29,7 @@
 
                             <div>
                                 <label for="nome_mae" class="block text-sm font-medium text-gray-700 dark:text-white ">Nome da Mãe</label>
-                                <input type="text" id="nome_mae" name="nome_mae" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="nome_mae" name="nome_mae" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('nome_mae') }}">
                                 @error('nome_mae')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -39,7 +39,7 @@
                         <div class="grid grid-cols-3 gap-4">
                             <div>
                                 <label for="telefone" class="block text-sm font-medium text-gray-700 dark:text-white ">Telefone</label>
-                                <input type="text" id="telefone" name="telefone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="(__) ____-____">
+                                <input type="text" id="telefone" name="telefone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="(__) ____-____" value ="{{ old('telefone') }}"> 
                                 @error('telefone')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -47,7 +47,7 @@
     
                             <div>
                                 <label for="cpf" class="block text-sm font-medium text-gray-700 dark:text-white ">CPF</label>
-                                <input type="text" id="cpf" name="cpf" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="___.___.___-__">
+                                <input type="text" id="cpf" name="cpf" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="___.___.___-__" value="{{ old('cpf') }}">
                                 @error('cpf')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -55,7 +55,7 @@
 
                             <div>
                                 <label for="rg" class="block text-sm font-medium text-gray-700 dark:text-white ">RG</label>
-                                <input type="text" id="rg" name="rg" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
+                                <input type="text" id="rg" name="rg" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 "  value="{{ old('rg') }}">
                                 @error('rg')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -66,7 +66,7 @@
                         <div class="grid grid-cols-3 gap-4">   
                             <div>
                                 <label for="nacionalidade" class="block text-sm font-medium text-gray-700 dark:text-white ">Nacionalidade</label>
-                                <input type="text" id="nacionalidade" name="nacionalidade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="nacionalidade" name="nacionalidade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('nacionalidade') }}">
                                 @error('nacionalidade')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -74,7 +74,7 @@
 
                             <div>
                                 <label for="nascimento_pais_id" class="block text-sm font-medium text-gray-700 dark:text-white ">País de Nascimento</label>
-                                <select id="nascimento_pais_id" name="nascimento_pais_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="nascimento_pais_id" name="nascimento_pais_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('nascimento_pais_id') }}">
                                     <option value="">Selecione</option>
                                     <option value="1">Brasil</option>
                                 </select>
@@ -85,7 +85,7 @@
 
                             <div>
                                 <label for="estado_nascimento_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado de Nascimento</label>
-                                <select id="estado_nascimento_id" name="estado_nascimento_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="estado_nascimento_id" name="estado_nascimento_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('estado_nascimento_id') }}">
                                     <option value="">Selecione</option>
                                     @error('estado_nascimento_id')
                                         <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -95,7 +95,7 @@
 
                             <div>
                                 <label for="nascimento_cidade_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Cidade de Nascimento</label>
-                                <select id="nascimento_cidade_id" name="nascimento_cidade_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="nascimento_cidade_id" name="nascimento_cidade_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('nascimento_cidade_id') }}">
                                     <option value="">Selecione um estado de nascimento</option>
                                 </select>
                                 @error('nascimento_cidade_id')
@@ -105,7 +105,7 @@
 
                             <div>
                                 <label for="estado_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado</label>
-                                <select id="estado_id" name="estado_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="estado_id" name="estado_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('estado_id') }}">
                                     <option value="">Selecione</option>
                                 </select>
                                 @error('estado_id')
@@ -115,7 +115,7 @@
 
                             <div>
                                 <label for="cidade_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Cidade</label>
-                                <select id="cidade_id" name="cidade_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="cidade_id" name="cidade_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('cidade_id') }}">
                                     <option value="">Selecione um estado</option>
                                 </select>
                                 @error('cidade_id')
@@ -125,7 +125,7 @@
 
                             <div>
                                 <label for="bairro" class="block text-sm font-medium text-gray-700 dark:text-white ">Bairro</label>
-                                <input type="text" id="bairro" name="bairro" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="bairro" name="bairro" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('bairro') }}">
                                 @error('bairro')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -133,7 +133,7 @@
 
                             <div>
                                 <label for="endereco" class="block text-sm font-medium text-gray-700 dark:text-white ">Endereço</label>
-                                <input type="text" id="endereco" name="endereco" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="endereco" name="endereco" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('endereco') }}">
                                 @error('endereco')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -141,7 +141,7 @@
 
                             <div>
                                 <label for="cep" class="block text-sm font-medium text-gray-700 dark:text-white ">CEP</label>
-                                <input type="text" id="cep" name="cep" class="cep mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="_____-___">
+                                <input type="text" id="cep" name="cep" class="cep mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="_____-___" value="{{ old('cep') }}">
                                 @error('cep')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -152,7 +152,7 @@
                         <div class="grid grid-cols-4 gap-4">
                             <div>
                                 <label for="deficiencia" class="block text-sm font-medium text-gray-700 dark:text-white ">Possui Deficiência?</label>
-                                <select id="deficiencia" name="deficiencia" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="deficiencia" name="deficiencia" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('deficiencia') }}">
                                     <option value="0">Não</option>
                                     <option value="1">Sim</option>
                                 </select>
@@ -163,7 +163,7 @@
 
                             <div>
                                 <label for="sexo" class="block text-sm font-medium text-gray-700 dark:text-white ">Sexo</label>
-                                <select id="sexo" name="sexo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="sexo" name="sexo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('sexo') }}">
                                     <option value="">Selecione</option>
                                     <option value="m">Masculino</option>
                                     <option value="f">Feminino</option>
@@ -175,7 +175,7 @@
 
                             <div>
                                 <label for="raca_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Raça</label>
-                                <select id="raca_id" name="raca_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="raca_id" name="raca_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('raca_id') }}">
                                 </select>
                                 @error('raca_id')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -184,7 +184,7 @@
 
                             <div>
                                 <label for="estado_civil_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado Civil</label>
-                                <select id="estado_civil_id" name="estado_civil_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="estado_civil_id" name="estado_civil_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('estado_civil_id') }}">
                                     
                                 </select>
                                 @error('estado_civil_id')
@@ -196,7 +196,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-white ">Email</label>
-                                <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Seu email">
+                                <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Seu email" value="{{ old('email') }}">
                                 @error('email')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -204,7 +204,7 @@
 
                             <div>
                                 <label for="senha" class="block text-sm font-medium text-gray-700 dark:text-white ">Senha</label>
-                                <input type="password" id="senha" name="senha" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Sua senha">
+                                <input type="password" id="senha" name="senha" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Sua senha" value="{{ old('senha') }}"> 
                                 @error('senha')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -215,7 +215,7 @@
 
                             <div>
                                 <label for="data_expedicao" class="block text-sm font-medium text-gray-700 dark:text-white">Data de Expedição</label>
-                                <input type="date" id="data_expedicao" name="data_expedicao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="date" id="data_expedicao" name="data_expedicao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('data_expedicao') }}">
                                 @error('data_expedicao')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -223,7 +223,7 @@
 
                             <div>
                                 <label for="orgao_expeditor" class="block text-sm font-medium text-gray-700 dark:text-white">Órgão Expedidor</label>
-                                <input type="text" id="orgao_expeditor" name="orgao_expeditor" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="orgao_expeditor" name="orgao_expeditor" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('orgao_expeditor') }}">
                                 @error('orgao_expeditor')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
                                 @enderror
@@ -231,7 +231,7 @@
 
                             <div>
                                 <label for="uf_expedicao" class="block text-sm font-medium text-gray-700 dark:text-white">UF de Expedição</label>
-                                <select id="uf_expedicao" name="uf_expedicao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="uf_expedicao" name="uf_expedicao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('uf_expedicao') }}">
                                     <option value="">Selecione</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -268,7 +268,7 @@
 
                             <div>
                                 <label for="escolaridade" class="block text-sm font-medium text-gray-700 dark:text-white">Escolaridade</label>
-                                <select id="escolaridade" name="escolaridade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <select id="escolaridade" name="escolaridade" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " value="{{ old('escolaridade') }}">
                                     <option value="">Selecione a escolaridade</option>
                                     <option value="Fundamental">Fundamental Completo</option>
                                     <option value="Fundamental Incompleto">Fundamental Incompleto</option>
