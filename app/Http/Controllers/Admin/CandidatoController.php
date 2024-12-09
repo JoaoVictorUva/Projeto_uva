@@ -67,7 +67,7 @@ class CandidatoController extends Controller
             'estado_id' => 'required', // Estado de residência
             'bairro' => 'required|string|max:255', // Bairro
             'endereco' => 'required|string|max:255', // Endereço
-            'cep' => 'required|string|size:8',
+            'cep' => 'required|string|max:10',
             'deficiencia' => 'required|boolean',
             'sexo' => 'required|string|max:1',
             'estado_civil_id' => 'required',
