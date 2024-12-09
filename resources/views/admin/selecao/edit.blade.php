@@ -11,7 +11,7 @@
                         <div>
                             <div>
                                 <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-white">Titulo</label>
-                                <input type="text" id="titulo" name="titulo" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Titulo da Seleção">
+                                <input type="text" id="titulo" name="titulo" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Titulo da Seleção" value="{{ $selecao->titulo ?? old('titulo') }}">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
@@ -21,25 +21,25 @@
                                     <input type="file" id="edital" name="edital" required 
                                         class="block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
                                                 file:bg-gray-50 file:border file:border-gray-300 file:rounded-md file:px-4 file:py-2 file:text-sm file:font-medium 
-                                                hover:file:bg-indigo-100 focus:file:bg-indigo-200">
+                                                hover:file:bg-indigo-100 focus:file:bg-indigo-200" value="{{ $selecao->edital ?? old('edital') }}">
                                 </div>
                             </div>
                             <div>
                                 <label for="informacoes_gerais" class="block text-sm font-medium text-gray-700 dark:text-white ">Informações Gerais</label>
-                                <input type="text" id="informacoes_gerais" name="informacoes_gerais" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="informacoes_gerais" name="informacoes_gerais" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $selecao->informacoes_gerais ?? old('informacoes_gerais') }}">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="inscricao_inicio" class="block text-sm font-medium text-gray-700 dark:text-white ">Inicio da Inscricao</label>
-                                <input type="date" id="inscricao_inicio" name="inscricao_inicio" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
+                                <input type="date" id="inscricao_inicio" name="inscricao_inicio" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $selecao->inscricao_inicio ?? old('inscricao_inicio')}}">
                             </div>
 
 
                             <div>
                                 <label for="inscricao_fim" class="block text-sm font-medium text-gray-700 dark:text-white ">Fim da Inscricao</label>
-                                <input type="date" id="inscricao_fim" name="inscricao_fim" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
+                                <input type="date" id="inscricao_fim" name="inscricao_fim" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $selecao->inscricao_fim ?? old('inscricao_fim')}}">
                             </div>
   
                         </div>
