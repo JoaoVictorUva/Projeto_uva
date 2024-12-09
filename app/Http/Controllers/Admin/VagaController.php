@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Vaga;
 use App\Models\Selecao;
+use App\Models\Inscricao;
 
 class VagaController extends Controller
 {
@@ -102,9 +103,16 @@ class VagaController extends Controller
     public function destroy($id)
     {
         $vaga = Vaga::findOrFail($id);
-        $vaga->delete();
 
-        return redirect()->route('vaga')->with('success', 'Vaga excluída com sucesso.');
+        $inscricao = Inscricao::where('vaga_id', $vaga->vaga_id)->first();
+
+        if ($inscricao) {
+            return redirect()->route('vaga')->with('error', 'Vaga não pode ser excluída pois tem uma inscrição associada a ela!');
+        } else {
+            $selecao->delete();
+            return redirect()->route('vaga')->with('success', 'Vaga excluída com sucesso.');
+        }
+
     }
 
 }
