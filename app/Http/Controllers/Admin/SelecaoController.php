@@ -93,7 +93,7 @@ class SelecaoController extends Controller
         // Validar os dados recebidos
         $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
-            'edital' => 'nullable|file|mimes:pdf|max:2048',
+            'edital' => 'required|file|mimes:pdf|max:2048',
             'informacoes_gerais' => 'required|string',
             'inscricao_inicio' => 'required|date',
             'inscricao_fim' => 'required|date|after_or_equal:inscricao_inicio',
