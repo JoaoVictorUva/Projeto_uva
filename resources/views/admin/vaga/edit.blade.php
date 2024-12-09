@@ -48,17 +48,17 @@
 
                             <div class="mb-4">
                                 <label for="tipo_concorrencia" class="block text-sm font-medium text-gray-700">Tipo de Concorrência</label>
-                                <input type="text" id="tipo_concorrencia" name="tipo_concorrencia" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="text" id="tipo_concorrencia" name="tipo_concorrencia" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $vaga->tipo_concorrencia ?? old('tipo_concorrencia')}}">
                             </div>
 
                             <div class="mb-4">
                                 <label for="valor_inscricao" class="block text-sm font-medium text-gray-700">Valor da Inscrição</label>
-                                <input type="text" id="valor_inscricao" name="valor_inscricao" step="0.01" required class="inscricao mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="text" id="valor_inscricao" name="valor_inscricao" step="0.01" required class="inscricao mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $vaga->valor_inscricao ?? old('valor_inscricao')}}">
                             </div>
 
                             <div class="mb-4">
                                 <label for="total_vagas" class="block text-sm font-medium text-gray-700">Total de Vagas</label>
-                                <input type="number" id="total_vagas" name="total_vagas" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <input type="number" id="total_vagas" name="total_vagas" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ $vaga->total_vagas ?? old('total_vagas')}}">
                             </div>
 
                         </div>
