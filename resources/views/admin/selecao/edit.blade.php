@@ -26,7 +26,7 @@
                                     <!-- Exibir edital atual, se disponível -->
                                     @if (!empty($selecao->edital))
                                     <a href="{{ asset($selecao->edital) }}" target="_blank" class="text-indigo-600 hover:underline">
-                                        ver edital atual
+                                        Ver edital atual
                                     </a>
                                     @endif
                                     <!-- Upload de novo edital -->
