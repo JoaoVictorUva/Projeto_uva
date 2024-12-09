@@ -89,7 +89,7 @@ class SelecaoController extends Controller
         // Localizar a seleção pelo ID
         $selecao = Selecao::findOrFail($id);
 
-        
+
         // Validar os dados recebidos
         $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
@@ -103,6 +103,7 @@ class SelecaoController extends Controller
             'resultado' => 'nullable|string',
         ]);
 
+
         // Atualizar os campos do modelo
         $selecao->titulo = $validacao['titulo'];
         $selecao->informacoes_gerais = $validacao['informacoes_gerais'];
@@ -115,13 +116,13 @@ class SelecaoController extends Controller
 
         // Verificar se um novo arquivo foi enviado
         if ($request->hasFile('edital')) {
-            $file = $request->file('edital');
-            $destinationPath = 'documents';
-            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file = $request->file('edital'); // Obtemos o arquivo
+            $destinationPath = 'documents'; // Caminho completo até a pasta "documents"
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Geramos um nome único para o arquivo
             $path = $destinationPath . '/' . $fileName;
+            $file->move($destinationPath, $fileName); // Movemos o arquivo para "public/documents"
 
-            // Mover o arquivo para a pasta e atualizar o campo de edital
-            $file->move($destinationPath, $fileName);
+            // Armazenamos o caminho relativo no banco de dados
             $selecao->edital = $path;
         }
 
