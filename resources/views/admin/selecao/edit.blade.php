@@ -16,6 +16,9 @@
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Título da Seleção"
                                 value="{{ $selecao->titulo ?? old('titulo') }}">
+                                @error('titulo')
+                                    <div class="text-red-600 text-sm">{{ $message }}</div>
+                                @enderror
                         </div>
 
                         <!-- Campos de Edital e Informações Gerais -->
@@ -34,6 +37,9 @@
                                         class="mt-2 block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
                                                 file:bg-gray-50 file:border file:border-gray-300 file:rounded-md file:px-4 file:py-2 file:text-sm file:font-medium 
                                                 hover:file:bg-indigo-100 focus:file:bg-indigo-200">
+                                                @error('edital')
+                                                    <div class="text-red-600 text-sm">{{ $message }}</div>
+                                                @enderror
                                 </div>
                             </div>
 
@@ -42,6 +48,9 @@
                                 <input type="text" id="informacoes_gerais" name="informacoes_gerais"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                     value="{{ $selecao->informacoes_gerais ?? old('informacoes_gerais') }}">
+                                    @error('informacoes_gerais')
+                                        <div class="text-red-600 text-sm">{{ $message }}</div>
+                                    @enderror
                             </div>
                         </div>
 
@@ -52,6 +61,9 @@
                                 <input type="date" id="inscricao_inicio" name="inscricao_inicio"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                     value="{{ $selecao->inscricao_inicio ?? old('inscricao_inicio') }}">
+                                    @error('inscricao_inicio')
+                                        <div class="text-red-600 text-sm">{{ $message }}</div>
+                                    @enderror
                             </div>
 
                             <div>
@@ -59,6 +71,9 @@
                                 <input type="date" id="inscricao_fim" name="inscricao_fim"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                     value="{{ $selecao->inscricao_fim ?? old('inscricao_fim') }}">
+                                    @error('inscricao_fim')
+                                        <div class="text-red-600 text-sm">{{ $message }}</div>
+                                    @enderror
                             </div>
                         </div>
 
@@ -70,6 +85,9 @@
                                 <option value="1" @if (( $selecao->exibir_edital ?? old('exibir_edital')) == 1) selected @endif>Sim</option>
                                 <option value="0" @if (( $selecao->exibir_edital ?? old('exibir_edital')) == 0) selected @endif>Não</option>
                             </select>
+                            @error('exibir_edital')
+                                <div class="text-red-600 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
@@ -79,6 +97,9 @@
                                 <option value="1" @if (( $selecao->exibir_resultado_inscricao ?? old('exibir_resultado_inscricao')) == 1) selected @endif>Sim</option>
                                 <option value="0" @if (( $selecao->exibir_resultado_inscricao ?? old('exibir_resultado_inscricao')) == 0) selected @endif>Não</option>
                             </select>
+                            @error('exibir_resultado_inscricao')
+                                <div class="text-red-600 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
@@ -88,6 +109,9 @@
                                 <option value="1" @if (( $selecao->finalizado ?? old('finalizado')) == 1) selected @endif>Sim</option>
                                 <option value="0" @if (( $selecao->finalizado ?? old('finalizado')) == 0) selected @endif>Não</option>
                             </select>
+                            @error('exibir_resultado_inscricao')
+                                <div class="text-red-600 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
