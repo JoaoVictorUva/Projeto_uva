@@ -7,8 +7,10 @@
                
                 <!-- Adicionando overflow-x-auto para rolagem horizontal -->
                 <div class="mt-2">
-                    <form class="grid grid-cols-1 gap-4" action="{{ route('candidato.store') }}" method="post">
+                    <form class="grid grid-cols-1 gap-4" action="{{ route('candidato.update', $candidato->candidato_id) }}"
+                    method="post">
                         @csrf
+                        @method('PUT')
 
                         <div>
                             <div>   
@@ -77,7 +79,7 @@
                                 <label for="nascimento_pais_id" class="block text-sm font-medium text-gray-700 dark:text-white ">País de Nascimento</label>
                                 <select id="nascimento_pais_id" name="nascimento_pais_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
                                     <option value="">Selecione</option>
-                                    <option value="1">Brasil</option>
+                                    <option value="1"  @if(($candidato->nascimento_pais_id ?? old('nascimento_pais_id'))  == 1 ) selected @endif>Brasil</option>
                                 </select>
                                 @error('nascimento_pais_id')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>

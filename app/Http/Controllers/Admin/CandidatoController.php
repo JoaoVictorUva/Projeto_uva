@@ -128,6 +128,75 @@ class CandidatoController extends Controller
         return view('admin.candidato.edit', compact('candidato', 'cidades', 'estados', 'racas', 'estadosCivis'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $validacao = $request->validate([
+           
+            'nome_completo' => 'required|string|max:255',
+            'nome_pai' => 'nullable|string|max:255', // Campo Nome do Pai
+            'nome_mae' => 'required|string|max:255', // Campo Nome da Mãe
+            'email' => 'required|email|unique:candidatos,email,' . $id . ',candidato_id',
+            'senha' => 'required|string|min:8',
+            'cpf' => 'required|string|size:14|unique:candidatos,cpf',
+            'telefone' => 'nullable|string',
+            'cidade_id' => 'required',
+            'raca_id' => 'required',
+            'rg' => 'required|string|max:15',
+            'nacionalidade' => 'required|string|max:255',
+            'nascimento_pais_id' => 'required', // País de Nascimento
+            'estado_nascimento_id' => 'required',
+            'nascimento_cidade_id' => 'required',
+            'estado_id' => 'required', // Estado de residência
+            'bairro' => 'required|string|max:255', // Bairro
+            'endereco' => 'required|string|max:255', // Endereço
+            'cep' => 'required|string|max:10',
+            'deficiencia' => 'required|boolean',
+            'sexo' => 'required|string|max:1',
+            'estado_civil_id' => 'required',
+            'data_expedicao' => 'required|date',
+            'orgao_expeditor' => 'required|string|max:50',
+            'uf_expedicao' => 'required|string|size:2',
+            'escolaridade' => 'required|string|max:255',
+        ]);
+
+        $cpfSemMascara = preg_replace('/\D/', '', $validacao['cpf']);
+        $telefoneSemMascara = preg_replace('/\D/', '', $validacao['telefone'] ?? '');
+        $rgSemMascara = preg_replace('/\D/', '', $validacao['rg']);
+        $cepSemMascara = preg_replace('/\D/', '', $validacao['cep']);
+
+        $candidato = Candidato::findOrFail($id);
+        $candidato->raca_id = $request->raca_id;
+        $candidato->estado_civil_id = $request->estado_civil_id;
+        $candidato->estado_id = $request->estado_id;
+        $candidato->cidade_id = $request->cidade_id;
+        $candidato->nascimento_pais_id = $request->nascimento_pais_id;
+        $candidato->estado_nascimento_id = $request->estado_nascimento_id;
+        $candidato->nascimento_cidade_id = $request->nascimento_cidade_id;
+        $candidato->nome_completo = $request->nome_completo;
+        $candidato->sexo = $request->sexo;
+        $candidato->deficiencia = $request->deficiencia;
+        $candidato->nome_pai = $request->nome_pai;
+        $candidato->nome_mae = $request->nome_mae;
+        $candidato->endereco = $request->endereco;
+        $candidato->bairro = $request->bairro;
+        $candidato->cep = $cepSemMascara;
+        $candidato->telefone = $telefoneSemMascara;
+        $candidato->email = $request->email;
+        $candidato->nacionalidade = $request->nacionalidade;
+        $candidato->cpf = $cpfSemMascara;
+        $candidato->rg = $rgSemMascara;
+        $candidato->data_expedicao = $request->data_expedicao;
+        $candidato->orgao_expeditor = $request->orgao_expeditor;
+        $candidato->uf_expedicao = $request->uf_expedicao;
+        $candidato->escolaridade = $request->escolaridade;
+        $candidato->senha =$request->senha;
+        $candidato->save();
+
+        return redirect()->route('candidato')->with('success', 'Candidato editado com sucesso.');
+
+    }
+    
+
     public function destroy($id)
     {
         $candidato = Candidato::findOrFail($id);
