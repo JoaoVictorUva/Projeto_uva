@@ -11,14 +11,14 @@
                         <div>
                             <div>
                                 <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-white">Titulo</label>
-                                <input type="text" id="titulo" name="titulo" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Titulo da Seleção">
+                                <input type="text" id="titulo" name="titulo"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="Titulo da Seleção">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="mb-4">
                                 <label for="edital" class="block text-sm font-medium text-gray-700 dark:text-white">Edital</label>
                                 <div class="mt-1 flex items-center">
-                                    <input type="file" id="edital" name="edital" required 
+                                    <input type="file" id="edital" name="edital"  
                                         class="block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
                                                 file:bg-gray-50 file:border file:border-gray-300 file:rounded-md file:px-4 file:py-2 file:text-sm file:font-medium 
                                                 hover:file:bg-indigo-100 focus:file:bg-indigo-200">
@@ -26,27 +26,27 @@
                             </div>
                             <div>
                                 <label for="informacoes_gerais" class="block text-sm font-medium text-gray-700 dark:text-white ">Informações Gerais</label>
-                                <input type="text" id="informacoes_gerais" name="informacoes_gerais" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
+                                <input type="text" id="informacoes_gerais" name="informacoes_gerais"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 ">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="inscricao_inicio" class="block text-sm font-medium text-gray-700 dark:text-white ">Inicio da Inscricao</label>
-                                <input type="date" id="inscricao_inicio" name="inscricao_inicio" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
+                                <input type="date" id="inscricao_inicio" name="inscricao_inicio"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
                             </div>
 
 
                             <div>
                                 <label for="inscricao_fim" class="block text-sm font-medium text-gray-700 dark:text-white ">Fim da Inscricao</label>
-                                <input type="date" id="inscricao_fim" name="inscricao_fim" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
+                                <input type="date" id="inscricao_fim" name="inscricao_fim"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " >
                             </div>
   
                         </div>
  
                         <div class="mb-4">
                             <label for="exibir_edital" class="block text-sm font-medium text-gray-700 dark:text-white ">Exibir Edital?</label>
-                            <select id="exibir_edital" name="exibir_edital" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <select id="exibir_edital" name="exibir_edital"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>
@@ -54,7 +54,7 @@
 
                         <div class="mb-4">
                             <label for="exibir_resultado_inscricao" class="block text-sm font-medium text-gray-700 dark:text-white ">Exibir Resultado da Inscrição?</label>
-                            <select id="exibir_resultado_inscricao" name="exibir_resultado_inscricao" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <select id="exibir_resultado_inscricao" name="exibir_resultado_inscricao"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>
@@ -62,7 +62,7 @@
 
                         <div class="mb-4">
                             <label for="finalizado" class="block text-sm font-medium text-gray-700 dark:text-white ">Finalizado?</label>
-                            <select id="finalizado" name="finalizado" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <select id="finalizado" name="finalizado"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>
@@ -70,7 +70,7 @@
 
                         <div class="mb-4">
                             <label for="resultado" class="block text-sm font-medium text-gray-700 dark:text-white ">Resultado</label>
-                            <textarea id="resultado" name="resultado" rows="4" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <textarea id="resultado" name="resultado" rows="4"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
 
                             
