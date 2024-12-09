@@ -69,6 +69,36 @@ class VagaController extends Controller
         return view('admin.vaga.edit', ['vaga' => $vaga, 'selecoes' => $selecao]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $validacao = $request->validate([
+            'selecao_id' => 'required|exists:selecoes,selecao_id', 
+            'cargo_id' => 'required|integer',            
+            'curso_id' => 'required|integer',           
+            'area_id' => 'required|integer',             
+            'tipo_concorrencia' => 'required|string|max:255',
+            'valor_inscricao' => 'required',
+            'total_vagas' => 'required|integer|min:1',            
+            'descricao' => 'required|string', 
+        ]);
+
+        $valorSemMascara = preg_replace('/\D/', '', $validacao['valor_inscricao']);
+
+        $vaga = Vaga::findOrFail($id);
+        $vaga->selecao_id = $request->selecao_id;
+        $vaga->cargo_id = $request->cargo_id;
+        $vaga->curso_id = $request->curso_id;
+        $vaga->area_id = $request->area_id;
+        $vaga->tipo_concorrencia = $request->tipo_concorrencia;
+        $vaga->valor_inscricao = $valorSemMascara;
+        $vaga->total_vagas = $request->total_vagas;
+        $vaga->descricao = $request->descricao;
+        $vaga->save();
+
+        // Redireciona ou retorna uma resposta de sucesso
+        return redirect()->route('vaga')->with('success', 'Vaga atualizada com sucesso!');
+    }
+
     public function destroy($id)
     {
         $vaga = Vaga::findOrFail($id);
