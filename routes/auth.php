@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/destroy/{id}', [CandidatoController::class, 'destroy'])->name('candidato.destroy');
 
         Route::get('/{id}', [CandidatoController::class, 'edit'])->name('candidato.edit');
-        Route::put('/update/{id}', [CandidatoController::class, 'update']);
+        Route::put('/update/{id}', [CandidatoController::class, 'update'])->name('candidato.update');
     });
 
     Route::prefix('selecoes')->group(function () {
@@ -75,8 +75,8 @@ Route::middleware('auth')->group(function () {
         
         Route::delete('/destroy/{id}', [VagaController::class, 'destroy'])->name('vaga.destroy');
         
-        // Route::get('/{id}', [VagaController::class, 'show']);
-        // Route::put('/update/{id}', [VagaController::class, 'update']);
+        Route::get('/{id}', [VagaController::class, 'edit'])->name('vaga.edit');
+        Route::put('/update/{id}', [VagaController::class, 'update'])->name('vaga.update');
     });
 
     Route::get('verify-email', EmailVerificationPromptController::class)
