@@ -5,34 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidato;
+use App\Models\Vaga;
+use App\Models\Inscricao;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class CandidatoController extends Controller
 {
     public function index() {
-        // Requisição para obter todas as cidades do IBGE
-        $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
-        $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();
-
-        $racas = Http::get(url('http://127.0.0.1:8000/racas'))->json();
-        $estadosCivis = Http::get(url('http://127.0.0.1:8000/estados-civis'))->json(); 
-
+    
         $busca = request()->busca;
 
+        $candidatos = Candidato::with('inscricao', 'inscricao.vaga')
+            ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
+                $query->where('nome_completo','like', '%' . $busca . '%')
+                ->orWhere('cpf', $busca);
+            })->paginate(20);
 
-        if ($busca) {
-
-            $candidatos = Candidato::where('nome_completo', 'like', '%' . $busca . '%')->paginate(2);
-            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
+        return view('admin.candidato.candidato', compact('candidatos', 'busca'));
         
-        }else{
-            // Buscar todos os candidatos  no banco
-            $candidatos = Candidato::paginate(2);
-           
-            // Retornar a view com os dados de candidatos e cidades
-            return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
-        }
         
     }
 
