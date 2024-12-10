@@ -14,7 +14,7 @@ class CandidatoController extends Controller
 {
     public function index() {
     
-        $busca = request()->busca;
+        $busca = preg_replace('/\D/', '', request()->busca);
 
         $cursos = $this->cursos();
 
