@@ -36,7 +36,7 @@
                                     <input type="file" id="edital" name="edital"
                                         class="mt-2 block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
                                                 file:bg-gray-50 file:border file:border-gray-300 file:rounded-md file:px-4 file:py-2 file:text-sm file:font-medium 
-                                                hover:file:bg-indigo-100 focus:file:bg-indigo-200">
+                                                hover:file:bg-indigo-100 focus:file:bg-indigo-200" >
                                                 
                                 </div>
                                 @error('edital')

@@ -93,7 +93,7 @@ class SelecaoController extends Controller
         // Validar os dados recebidos
         $validacao = $request->validate([
             'titulo' => 'required|string|max:255',
-            'edital' => 'required|file|mimes:pdf|max:2048',
+            'edital' => 'file|mimes:pdf',
             'informacoes_gerais' => 'required|string',
             'inscricao_inicio' => 'required|date',
             'inscricao_fim' => 'required|date|after_or_equal:inscricao_inicio',
@@ -103,34 +103,54 @@ class SelecaoController extends Controller
             'resultado' => 'nullable|string',
         ]);
 
+        if ($request->hasFile('edital') == false) {
 
-        // Atualizar os campos do modelo
-        $selecao->titulo = $validacao['titulo'];
-        $selecao->informacoes_gerais = $validacao['informacoes_gerais'];
-        $selecao->inscricao_inicio = $validacao['inscricao_inicio'];
-        $selecao->inscricao_fim = $validacao['inscricao_fim'];
-        $selecao->exibir_edital = $validacao['exibir_edital'];
-        $selecao->exibir_resultado_inscricao = $validacao['exibir_resultado_inscricao'];
-        $selecao->finalizado = $validacao['finalizado'];
-        $selecao->resultado = $validacao['resultado'];
+            $selecao = Selecao::findOrFail($id);
 
-        // Verificar se um novo arquivo foi enviado
-        if ($request->hasFile('edital')) {
-            $file = $request->file('edital'); // Obtemos o arquivo
-            $destinationPath = 'documents'; // Caminho completo até a pasta "documents"
-            $fileName = time() . '_' . $file->getClientOriginalName(); // Geramos um nome único para o arquivo
-            $path = $destinationPath . '/' . $fileName;
-            $file->move($destinationPath, $fileName); // Movemos o arquivo para "public/documents"
+            $selecao->titulo = $validacao['titulo'];
+            $selecao->informacoes_gerais = $validacao['informacoes_gerais'];
+            $selecao->inscricao_inicio = $validacao['inscricao_inicio'];
+            $selecao->inscricao_fim = $validacao['inscricao_fim'];
+            $selecao->exibir_edital = $validacao['exibir_edital'];
+            $selecao->exibir_resultado_inscricao = $validacao['exibir_resultado_inscricao'];
+            $selecao->finalizado = $validacao['finalizado'];
+            $selecao->resultado = $validacao['resultado'];
 
-            // Armazenamos o caminho relativo no banco de dados
-            $selecao->edital = $path;
+            $selecao->save();
+            
+            return redirect()->route('selecao')->with('success', 'Seleção editada com sucesso!');
+        }else {
+
+            $selecao = Selecao::findOrFail($id);
+
+            $selecao->titulo = $validacao['titulo'];
+            $selecao->informacoes_gerais = $validacao['informacoes_gerais'];
+            $selecao->inscricao_inicio = $validacao['inscricao_inicio'];
+            $selecao->inscricao_fim = $validacao['inscricao_fim'];
+            $selecao->exibir_edital = $validacao['exibir_edital'];
+            $selecao->exibir_resultado_inscricao = $validacao['exibir_resultado_inscricao'];
+            $selecao->finalizado = $validacao['finalizado'];
+            $selecao->resultado = $validacao['resultado'];
+
+            // Verificar se um novo arquivo foi enviado
+            if ($request->hasFile('edital')) {
+                $file = $request->file('edital'); // Obtemos o arquivo
+                $destinationPath = 'documents'; // Caminho completo até a pasta "documents"
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Geramos um nome único para o arquivo
+                $path = $destinationPath . '/' . $fileName;
+                $file->move($destinationPath, $fileName); // Movemos o arquivo para "public/documents"
+
+                // Armazenamos o caminho relativo no banco de dados
+                $selecao->edital = $path;
+            }
+
+            // Salvar as alterações
+            $selecao->save();
+
+            return redirect()->route('selecao')->with('success', 'Seleção editada com sucesso!');
         }
 
-        // Salvar as alterações
-        $selecao->save();
-
-        // Retornar uma mensagem de sucesso
-        return redirect()->route('selecao')->with('success', 'Seleção editada com sucesso!');
+        
     }
 
     public function destroy($id)

@@ -23,7 +23,7 @@ class CandidatoController extends Controller
 
         if ($busca) {
 
-            $candidatos = Candidato::where('nome_completo', 'like', '%' . $busca . '%')->get();
+            $candidatos = Candidato::where('nome_completo', 'like', '%' . $busca . '%')->paginate(2);
             return view('admin.candidato.candidato', compact('candidatos', 'cidades', 'estados', 'racas', 'estadosCivis'));
         
         }else{
