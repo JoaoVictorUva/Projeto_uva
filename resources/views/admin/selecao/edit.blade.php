@@ -39,9 +39,6 @@
                                                 hover:file:bg-indigo-100 focus:file:bg-indigo-200">
                                                 
                                 </div>
-                                @error('edital')
-                                    <div class="text-red-600 text-sm">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div>
