@@ -16,8 +16,14 @@
                 </div>
                 
                 @if(session('success'))
-                    <div id="successMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-green-600">
+                    <div id="errorMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-green-600">
                         {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div id="successMessage" class="absolute top-16 right-0 mt-3 mr-3 p-3 rounded-md text-white bg-red-600">
+                        {{ session('error') }}
                     </div>
                 @endif
 
@@ -27,6 +33,19 @@
                         window.onload = function() {
                             // Exibe a mensagem
                             const message = document.getElementById('successMessage');
+                            message.classList.remove('hidden');
+                            
+                            // Esconde a mensagem após 3 segundos
+                            setTimeout(function() {
+                                message.classList.add('hidden');
+                            }, 4000);  // 3000 milissegundos = 3 segundos
+                        }
+                    @endif
+
+                    @if(session('error'))
+                        window.onload = function() {
+                            // Exibe a mensagem
+                            const message = document.getElementById('errorMessage');
                             message.classList.remove('hidden');
                             
                             // Esconde a mensagem após 3 segundos
