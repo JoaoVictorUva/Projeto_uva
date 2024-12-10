@@ -26,4 +26,9 @@ class Vaga extends Model
     {
         return $this->belongsTo(Selecao::class, 'selecao_id', 'selecao_id');
     }
+
+    public function inscricao()
+    {
+        return $this->hasOne(Inscricao::class, 'vaga_id');
+    }
 }

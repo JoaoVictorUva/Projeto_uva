@@ -39,4 +39,9 @@ class Candidato extends Model
         'senha'
     ];
 
+    public function inscricao()
+    {
+        return $this->hasOne(Inscricao::class, 'candidato_id');
+    }
+
 }
