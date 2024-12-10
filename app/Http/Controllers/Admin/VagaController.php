@@ -9,25 +9,30 @@ use App\Models\Vaga;
 use App\Models\Selecao;
 use App\Models\Inscricao;
 
+
 class VagaController extends Controller
 {
     public function index() 
     {   
         $busca = request()->busca;
+
+        $cursos = $this->cursos();
+
         if ($busca) {
             $vagas = Vaga::with('selecao')->where('nome_completo', 'like', '%' . $busca . '%')->get();
-            return view('admin.vaga.vaga', ['vagas' => $vagas]);
+            return view('admin.vaga.vaga', compact('vagas', 'busca', 'cursos'));
         }else{  
             $vagas = Vaga::all();
-            return view('admin.vaga.vaga', ['vagas' => $vagas]);
+            return view('admin.vaga.vaga', compact('vagas', 'busca', 'cursos'));
         }
 
     }
 
     public function createAdd() {
-        $selecao = Selecao::all();
+        $selecoes = Selecao::all();
+        $cursos = $this->cursos();
 
-        return view('admin.vaga.create' , ['selecoes' => $selecao]);
+        return view('admin.vaga.create' , compact('selecoes', 'cursos'));
     }
 
     public function store(Request $request) {
@@ -65,9 +70,11 @@ class VagaController extends Controller
 
     public function edit($id)
     {
+        $cursos = $this->cursos();
+
         $vaga = Vaga::find($id);
-        $selecao = Selecao::all();
-        return view('admin.vaga.edit', ['vaga' => $vaga, 'selecoes' => $selecao]);
+        $selecoes = Selecao::all();
+        return view('admin.vaga.edit', compact('vaga', 'selecoes', 'cursos'));
     }
 
     public function update(Request $request, $id)
@@ -113,6 +120,17 @@ class VagaController extends Controller
             return redirect()->route('vaga')->with('success', 'Vaga excluída com sucesso.');
         }
 
+    }
+
+    public function cursos()
+    {
+        return [
+            ['id' => 1, 'descricao' => 'Informática'],
+            ['id' => 2, 'descricao' => 'Mecânica'],
+            ['id' => 3, 'descricao' => 'Eletrônica'],
+            ['id' => 4, 'descricao' => 'Civil'],
+            ['id' => 5, 'descricao' => 'Engenharia'],
+        ];
     }
 
 }
