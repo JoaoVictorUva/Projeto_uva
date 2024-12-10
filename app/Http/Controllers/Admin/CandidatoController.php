@@ -16,7 +16,7 @@ class CandidatoController extends Controller
     
         $busca = request()->busca;
 
-        $candidatos = Candidato::with('inscricao', 'inscricao.vaga')
+        $candidatos = Candidato::with('inscricao', 'inscricao.vaga.selecao')
             ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
                 $query->where('nome_completo','like', '%' . $busca . '%')
                 ->orWhere('cpf', $busca);
