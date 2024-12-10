@@ -16,13 +16,15 @@ class CandidatoController extends Controller
     
         $busca = request()->busca;
 
+        $cursos = $this->cursos();
+
         $candidatos = Candidato::with('inscricao', 'inscricao.vaga.selecao')
             ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
                 $query->where('nome_completo','like', '%' . $busca . '%')
                 ->orWhere('cpf', $busca);
             })->paginate(20);
 
-        return view('admin.candidato.candidato', compact('candidatos', 'busca'));
+        return view('admin.candidato.candidato', compact('candidatos', 'busca', 'cursos'));
         
         
     }
@@ -194,5 +196,16 @@ class CandidatoController extends Controller
         $candidato->delete();
 
         return redirect()->route('candidato')->with('success', 'Candidato excluído com sucesso.');
+    }
+
+    public function cursos()
+    {
+        return [
+            ['id' => 1, 'descricao' => 'Informática'],
+            ['id' => 2, 'descricao' => 'Mecânica'],
+            ['id' => 3, 'descricao' => 'Eletrônica'],
+            ['id' => 4, 'descricao' => 'Civil'],
+            ['id' => 5, 'descricao' => 'Engenharia'],
+        ];
     }
 }

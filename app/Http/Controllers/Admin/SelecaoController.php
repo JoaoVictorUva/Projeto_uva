@@ -12,17 +12,16 @@ class SelecaoController extends Controller
 {
     public function index()
     {
+    
         $busca = request()->busca;
-        if ($busca) {
-            $selecoes = Selecao::where('titulo', 'like', '%' . $busca . '%')->get();
-            return view('admin.selecao.selecao', ['selecoes' => $selecoes]);
-        } else {
-            $selecoes = Selecao::all();
 
-            return view('admin.selecao.selecao', ['selecoes' => $selecoes]);
-        }
+        $selecoes = Selecao::when( isset($busca) && !empty($busca) ,function($query) use($busca){
+                $query->where('titulo','like', '%' . $busca . '%');
+            })->paginate(20);
+
+            return view('admin.selecao.selecao', compact('selecoes', 'busca'));
+
     }
-
     public function createAdd()
     {
         return view('admin.selecao.create');
@@ -117,7 +116,7 @@ class SelecaoController extends Controller
             $selecao->resultado = $validacao['resultado'];
 
             $selecao->save();
-            
+
             return redirect()->route('selecao')->with('success', 'Seleção editada com sucesso!');
         }else {
 

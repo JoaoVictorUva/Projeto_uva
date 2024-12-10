@@ -17,22 +17,25 @@ class VagaController extends Controller
         $busca = request()->busca;
 
         $cursos = $this->cursos();
+        $cargos = $this->cargos();
+        $areas = $this->areas();
 
-        if ($busca) {
-            $vagas = Vaga::with('selecao')->where('nome_completo', 'like', '%' . $busca . '%')->get();
-            return view('admin.vaga.vaga', compact('vagas', 'busca', 'cursos'));
-        }else{  
-            $vagas = Vaga::all();
-            return view('admin.vaga.vaga', compact('vagas', 'busca', 'cursos'));
-        }
+        $vagas = Vaga::with('selecao')
+            ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
+                $query->where('curso_id', $busca);
+            })->paginate(10);
 
+            return view('admin.vaga.vaga', compact('vagas', 'busca', 'cursos', 'cargos', 'areas'));
     }
 
     public function createAdd() {
         $selecoes = Selecao::all();
-        $cursos = $this->cursos();
 
-        return view('admin.vaga.create' , compact('selecoes', 'cursos'));
+        $cursos = $this->cursos();
+        $cargos = $this->cargos();
+        $areas = $this->areas();
+
+        return view('admin.vaga.create' , compact('selecoes', 'cursos', 'cargos', 'areas'));
     }
 
     public function store(Request $request) {
@@ -71,10 +74,12 @@ class VagaController extends Controller
     public function edit($id)
     {
         $cursos = $this->cursos();
+        $cargos = $this->cargos();
+        $areas = $this->areas();
 
         $vaga = Vaga::find($id);
         $selecoes = Selecao::all();
-        return view('admin.vaga.edit', compact('vaga', 'selecoes', 'cursos'));
+        return view('admin.vaga.edit', compact('vaga', 'selecoes', 'cursos', 'cargos', 'areas'));
     }
 
     public function update(Request $request, $id)
@@ -123,6 +128,27 @@ class VagaController extends Controller
     }
 
     public function cursos()
+    {
+        return [
+            ['id' => 1, 'descricao' => 'Informática'],
+            ['id' => 2, 'descricao' => 'Mecânica'],
+            ['id' => 3, 'descricao' => 'Eletrônica'],
+            ['id' => 4, 'descricao' => 'Civil'],
+            ['id' => 5, 'descricao' => 'Engenharia'],
+        ];
+    }
+    public function cargos()
+    {
+        return [
+            ['id' => 1, 'descricao' => 'Informática'],
+            ['id' => 2, 'descricao' => 'Mecânica'],
+            ['id' => 3, 'descricao' => 'Eletrônica'],
+            ['id' => 4, 'descricao' => 'Civil'],
+            ['id' => 5, 'descricao' => 'Engenharia'],
+        ];
+    }
+
+    public function areas()
     {
         return [
             ['id' => 1, 'descricao' => 'Informática'],

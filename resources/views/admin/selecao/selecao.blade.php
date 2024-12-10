@@ -101,7 +101,15 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        
                     </table>
+                    @if(isset($busca))
+
+                        {{$selecoes->withQueryString($busca)->links() }}
+                        
+                    @else
+                        {{ $selecoes->links() }}
+                    @endif
                 </div>
             </div>
             <script>

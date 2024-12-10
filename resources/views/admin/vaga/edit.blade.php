@@ -28,7 +28,9 @@
                             <label for="cargo_id" class="block text-sm font-medium text-gray-700">Cargo</label>
                             <select id="cargo_id" name="cargo_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="">Selecione o Cargo</option>
-                                <option value="1"  @if(($vaga->cargo_id ?? old('cargo_id'))  ==  1  ) selected @endif>asdasd</option>
+                                @foreach ($cargos as $cargo)    
+                                    <option value="{{ $cargo['id'] }}" @if(($vaga->cargo_id ?? old('cargo_id')) == $cargo['id']) selected @endif >{{ $cargo['descricao'] }}</option>
+                                @endforeach   
                             </select>
                             @error('cargo_id')
                                 <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -37,20 +39,21 @@
 
                         <div class="mb-4">
                             <label for="curso_id" class="block text-sm font-medium text-gray-700">Curso</label>
-                            <select id="curso_id" name="curso_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <select id="curso_id" name="curso_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value="{{ old('curso_id') }}">
                                 <option value="">Selecione o Curso</option>
-                                    <option value="1"  @if(($vaga->curso_id ?? old('curso_id'))  ==  1  ) selected @endif>asdasd</option>
+                                @foreach ($cursos as $curso)    
+                                    <option value="{{ $curso['id'] }}" @if(($vaga->curso_id ?? old('curso_id')) == $curso['id']) selected @endif >{{ $curso['descricao'] }}</option>
+                                @endforeach     
                             </select>
-                            @error('curso_id')
-                                <div class="text-red-600 text-sm">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="mb-4">
                             <label for="area_id" class="block text-sm font-medium text-gray-700">Área</label>
                             <select id="area_id" name="area_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="">Selecione a Área</option>
-                                    <option value="1"  @if(($vaga->area_id ?? old('area_id'))  ==  1  ) selected @endif>asdasdas</option>
+                                @foreach ($areas as $area)    
+                                    <option value="{{ $area['id'] }}" @if(($vaga->area_id ?? old('area_id')) == $area['id']) selected @endif >{{ $area['descricao'] }}</option>
+                                @endforeach   
                             </select>
                             @error('area_id')
                                 <div class="text-red-600 text-sm">{{ $message }}</div>
