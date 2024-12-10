@@ -7,7 +7,7 @@
                     <div class="border border-gray-300 rounded-md px-3 py-1 flex items-center justify-center">
                         <i class="fas fa-search dark:text-white"></i>
                         <form action="{{ route('candidato') }}" method="get">
-                            <input class="border-none px-3 py-1 bg-white focus:outline-none !important dark:bg-transparent dark:text-white" type="text" name="busca" id="busca" placeholder="Busca">
+                            <input class="border-none px-3 py-1 bg-white focus:outline-none !important dark:bg-transparent dark:text-white" type="text" name="busca" id="busca" placeholder="Buscar por Nome ou CPF" value="{{ isset($busca) ? $busca : '' }}">
                         </form>
                         
                    
@@ -43,88 +43,36 @@
                     <table class="table-auto w-full mb-3">
                         <thead class="border-t bg-white dark:bg-transparent">
                             <tr class="border-b border-gray-300 ">
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Inscrição</td>
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">CPF</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Nome Completo</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Sexo</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Deficiencia</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Nome do Pai</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Nome da Mae</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Endereço</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">bairro</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Raça</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Estado Civil</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Estado</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Cidade</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">País de Nascimento</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Estado de Nascimento</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Cidade de Nascimento</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">cep</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Telefone</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Email</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Nacionalidade</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Cpf</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Rg</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Data de Expedição</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Orgão Expeditor</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">UF Expedição</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Escolaridade</td>
+                                
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Seleção</td>
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Curso</td>
+                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Tipo de concorrência</td>
                                 <td class="px-4 text-center text-gray-500 dark:text-white py-2 whitespace-nowrap">Ações</td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($candidatos as $candidato)
                                 <tr class="border-b border-gray-300 bg-white hover:bg-gray-200 dark:bg-transparent">
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nome_completo }}</td>
+                                    
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{$candidato->inscricao ? $candidato->inscricao->inscricao_id : 'Nao existe inscricao para esse candidato'}}</td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ $candidato->sexo === 'f' ? 'Feminino' : ($candidato->sexo === 'm' ? 'Masculino' : 'Não especificado') }}
+                                        {{ $candidato->cpf }}
                                     </td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ $candidato->deficiencia == '1' ? 'Possui' : ($candidato->deficiencia == '0' ? 'Não possui' : 'Não especificado') }}
+                                        {{ $candidato->nome_completo }}
                                     </td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nome_pai }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nome_mae }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->endereco }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->bairro }}</td>
+                                    
 
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($racas)->firstWhere('id', 2)['descricao'] ?? 'Raça não especificada' }}
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($estadosCivis)->firstWhere('id', $candidato->estado_civil_id)['descricao'] ?? 'Estado civil não especificado' }}
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($estados)->firstWhere('id', $candidato->estado_id)['nome'] ?? 'Estado não encontrado' }}
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($cidades)->firstWhere('id', $candidato->cidade_id)['nome'] ?? 'Cidade não encontrada' }}    
-                                    </td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ $candidato->nascimento_pais_id == 1 ? 'Brasil' : 'Outro País' }}   
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($estados)->firstWhere('id', $candidato->estado_nascimento_id)['nome'] ?? 'Estado não encontrado' }}
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">
-                                        {{ collect($cidades)->firstWhere('id', $candidato->nascimento_cidade_id)['nome'] ?? 'Cidade não encontrada' }}
-                                    </td>
-
-                                    <td class=" px-4 py-2 dark:text-white whitespace-nowrap" ><span class="cep">{{ $candidato->cep }}</span></td>
-                                    <td class="telefone px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->telefone }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->email }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->nacionalidade }}</td>
-                                    <td class="cpf px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->cpf }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap" id="rg">{{ $candidato->rg }}</td>
-                                    <td class="data px-4 py-2 dark:text-white whitespace-nowrap" >{{ $candidato->data_expedicao }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->orgao_expeditor }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->uf_expedicao }}</td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->escolaridade }}</td>
+                                    
                                     <td class="px-4 flex gap-2 py-2 text-gray-500 dark:text-white whitespace-nowrap">
                                         <a href="{{ route('candidato.edit', $candidato->candidato_id) }}" class="px-2 py-1 bg-blue-500 text-white rounded-md">Editar</a>
                                         <form action="{{ route('candidato.destroy', $candidato->candidato_id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
@@ -141,8 +89,12 @@
                     </table>
 
                     </div>
-                        @if($candidatos->count() > 0)
-                            {{ $candidatos->links(); }}
+                        @if(isset($busca))
+
+                            {{$candidatos->withQueryString($busca)->links() }}
+                            
+                        @else
+                            {{ $candidatos->links() }}
                         @endif
                     <div>
 
