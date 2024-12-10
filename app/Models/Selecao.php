@@ -21,4 +21,9 @@ class Selecao extends Model
         'finalizado',
         'resultado',
     ];
+
+    public function vaga()
+    {
+        return $this->hasOne(Vaga::class, 'selecao_id');
+    }
 }
