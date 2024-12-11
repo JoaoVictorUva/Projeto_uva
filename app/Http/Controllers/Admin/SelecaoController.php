@@ -13,7 +13,7 @@ class SelecaoController extends Controller
     public function index()
     {
     
-        $busca = request()->busca;
+        $busca = trim(request()->busca);
 
         $selecoes = Selecao::when( isset($busca) && !empty($busca) ,function($query) use($busca){
                 $query->where('titulo','like', '%' . $busca . '%');
