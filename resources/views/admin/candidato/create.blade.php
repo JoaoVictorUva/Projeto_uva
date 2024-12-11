@@ -46,7 +46,7 @@
                             </div>
     
                             <div>
-                                <label for="cpf" class="block text-sm font-medium text-gray-700 dark:text-white ">CPF</label>
+                                <label for="cpf" class="block text-sm font-medium text-gray-700 dark:text-white">CPF</label>
                                 <input type="text" id="cpf" name="cpf" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 " placeholder="___.___.___-__" value="{{ old('cpf') }}">
                                 @error('cpf')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
