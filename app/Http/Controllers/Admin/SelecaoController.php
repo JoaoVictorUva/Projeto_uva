@@ -27,6 +27,7 @@ class SelecaoController extends Controller
         return view('admin.selecao.create');
     }
 
+
     public function store(Request $request)
     {
 
