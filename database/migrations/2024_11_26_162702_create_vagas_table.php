@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->id('vaga_id');
             $table->unsignedBigInteger('selecao_id');
-            $table->unsignedBigInteger('cargo_id');
             $table->unsignedBigInteger('curso_id');
-            $table->unsignedBigInteger('area_id');
-
             $table->string('tipo_concorrencia');
             $table->integer('valor_inscricao');
             $table->integer('total_vagas');  
