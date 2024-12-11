@@ -57,7 +57,7 @@
                             @foreach($candidatos as $candidato)
                                 <tr class="border-b border-gray-300 bg-white hover:bg-gray-200 dark:bg-transparent">
                                     
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{$candidato->inscricao ? $candidato->inscricao->inscricao_id : 'Nao existe inscricao para esse candidato'}}</td>
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{$candidato->inscricao ? $candidato->inscricao->inscricao_id : '-'}}</td>
 
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap cpf">
                                         {{ $candidato->cpf }}

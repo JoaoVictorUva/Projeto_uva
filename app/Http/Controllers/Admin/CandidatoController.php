@@ -34,8 +34,8 @@ class CandidatoController extends Controller
         $cidades = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios')->json();
         $estados = Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->json();
         
-        $racas = Http::get(url('http://127.0.0.1:8000/racas'))->json();
-        $estadosCivis = Http::get(url('http://127.0.0.1:8000/estados-civis'))->json(); 
+        $racas = $this->racas();
+        $estadosCivis = $this->estadosCivis(); 
 
         return view('admin.candidato.create', compact('cidades', 'estados' ,'racas', 'estadosCivis'));
     }
@@ -69,6 +69,33 @@ class CandidatoController extends Controller
             'orgao_expeditor' => 'required|string|max:50',
             'uf_expedicao' => 'required|string|size:2',
             'escolaridade' => 'required|string|max:255',
+        ],
+        [
+            'nome_completo.required' => 'O campo Nome Completo é obrigatório.',
+            'nome_completo.max' => 'O campo Nome Completo deve ter no máximo 255 caracteres.',
+            'nome_pai.max' => 'O campo Nome do Pai deve ter no máximo 255 caracteres.',
+            'nome_mae.required' => 'O campo Nome da Mãe é obrigatório.',
+            'email.required' => 'O campo E-mail é obrigatório.',
+            'email.email' => 'O campo E-mail deve ser um endereço de e-mail valido.',
+            'email.unique' => 'O E-mail já está cadastrado.',
+            'senha.required' => 'O campo Senha é obrigatório.',
+            'senha.min' => 'O campo Senha deve ter no mínimo 8 caracteres.',
+            'telefone.max' => 'O campo Telefone deve ter no máximo 15 caracteres.',
+            'cidade_id.required' => 'O campo Cidade é obrigatório.',
+            'raca_id.required' => 'O campo Raca é obrigatório.',
+            'nascimento_pais_id.required' => 'O campo País de Nascimento é obrigatório.',
+            'estado_nascimento_id.required' => 'O campo Estado de Nascimento é obrigatório.',
+            'nascimento_cidade_id.required' => 'O campo Cidade de Nascimento é obrigatório.',
+            'nacionalidade.required' => 'O campo Nacionalidade é obrigatório.',
+            'rg.required' => 'O campo RG é obrigatório.',
+            'rg.max' => 'O campo RG deve ter no máximo 15 caracteres.',
+            'rg.unique' => 'O RG já está cadastrado.',
+            'cpf.required' => 'O campo CPF é obrigatório.',
+            'cpf.size' => 'O campo CPF deve ter 14 caracteres.',
+            'cpf.unique' => 'O CPF já está cadastrado.',
+            'cep.required' => 'O campo CEP é obrigatório.',
+            'cep.max' => 'O campo CEP deve ter no máximo 10 caracteres.',
+            'cep.unique' => 'O CEP já está cadastrado.',
         ]);
 
         $cpfSemMascara = preg_replace('/\D/', '', $validacao['cpf']);
@@ -207,6 +234,27 @@ class CandidatoController extends Controller
             ['id' => 3, 'descricao' => 'Eletrônica'],
             ['id' => 4, 'descricao' => 'Civil'],
             ['id' => 5, 'descricao' => 'Engenharia'],
+        ];
+    }
+
+    public function racas(){
+        return [
+            ['id' => 1, 'descricao' => 'Branca'],
+            ['id' => 2, 'descricao' => 'Preta'],
+            ['id' => 3, 'descricao' => 'Parda'],
+            ['id' => 4, 'descricao' => 'Amarela'],
+            ['id' => 5, 'descricao' => 'Indígena'],
+        ];
+    
+    }
+
+    public function estadosCivis(){
+        return[
+            ['id' => 1, 'descricao' => 'Solteiro(a)'],
+            ['id' => 2, 'descricao' => 'Casado(a)'],
+            ['id' => 3, 'descricao' => 'Divorciado(a)'],
+            ['id' => 4, 'descricao' => 'Viúvo(a)'],
+            ['id' => 5, 'descricao' => 'União Estável'],
         ];
     }
 }

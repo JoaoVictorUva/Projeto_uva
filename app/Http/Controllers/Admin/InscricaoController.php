@@ -12,23 +12,24 @@ use App\Models\Candidato;
 
 class InscricaoController extends Controller
 {
+
     public function index()
     {   
+        
         $busca = trim(request()->busca); //id da selecao
 
         $selecoes = Selecao::all();
         
-        $vaga = Vaga::findOrFail($busca );
+        $vaga = Vaga::where('selecao_id', $busca)->first();
 
-        if (isset($vaga) && !empty($vaga)) {
-            dd($vaga);
-        }
+        $id = $vaga->vaga_id ?? null;
+
         $inscricoes = Inscricao::with('candidato', 'vaga.selecao')  
-            ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
-                $query->where('vaga_id', $busca);
-            })->paginate(4);
+            ->when( $id != null ,function($query) use($id){
+                $query->where('vaga_id', $id);
+            })->paginate(5);
 
-            return view('admin.inscricao.inscricao', compact('inscricoes', 'busca', 'selecoes'));
+            return view('admin.inscricao.teste', compact('inscricoes', 'busca', 'selecoes'));
     }
 
     public function createAdd()

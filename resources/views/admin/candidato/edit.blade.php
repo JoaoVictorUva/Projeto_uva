@@ -180,6 +180,9 @@
                             <div>
                                 <label for="raca_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Raça</label>
                                 <select id="raca_id" name="raca_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    @foreach ($racas as $raca )
+                                        <option value="{{ $raca['id'] }}" @if(($candidato->raca_id ?? old('raca_id'))  == $raca['id'] ) selected @endif>{{ $raca['descricao'] }}</option>
+                                    @endforeach
                                 </select>
                                 @error('raca_id')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -189,7 +192,9 @@
                             <div>
                                 <label for="estado_civil_id" class="block text-sm font-medium text-gray-700 dark:text-white ">Estado Civil</label>
                                 <select id="estado_civil_id" name="estado_civil_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                    
+                                @foreach ($estadosCivis as $estado )
+                                        <option value="{{ $estado['id'] }}" @if(($candidato->raca_id ?? old('raca_id'))  == $estado['id'] ) selected @endif>{{ $estado['descricao'] }}</option>
+                                    @endforeach
                                 </select>
                                 @error('estado_civil_id')
                                     <div class="text-red-600 text-sm">{{ $message }}</div>
@@ -392,48 +397,8 @@
                             });
 
                             
-                            const racas = @json($racas); 
-                            const estadosCivis = @json($estadosCivis);
-
-                            const idraca = @json($candidato->raca_id);
-                            // Função para carregar as raças no select
-                            function carregarRacas(selectId) {
-                                const racaSelect = document.getElementById(selectId);
-                                racaSelect.innerHTML = '<option value="">Selecione uma raça</option>'; // Limpa opções anteriores
-
-                                racas.forEach(raca => {
-                                    const option = document.createElement('option');
-                                    option.value = raca.id;
-                                    option.textContent = raca.descricao;
-                                    if (raca.id == idraca) {
-                                        option.selected = true;
-                                    }
-                                    racaSelect.appendChild(option);
-                                });
-                            }
-
-                            const idEstadoCivil = @json($candidato->estado_civil_id);
-                            // Função para carregar os estados civis no select
-                            function carregarEstadosCivis(selectId) {
-                                const estadoCivilSelect = document.getElementById(selectId);
-                                estadoCivilSelect.innerHTML = '<option value="">Selecione um estado civil</option>'; // Limpa opções anteriores
-
-                                estadosCivis.forEach(estadoCivil => {
-                                    const option = document.createElement('option');
-                                    option.value = estadoCivil.id;
-                                    option.textContent = estadoCivil.descricao;
-                                    if (estadoCivil.id == idEstadoCivil) {
-                                        option.selected = true;
-                                    }
-                                    estadoCivilSelect.appendChild(option);
-                                });
-                            }
-
-                            // Carregar as raças no select de raças
-                            carregarRacas('raca_id');
-
-                            // Carregar os estados civis no select de estados civis
-                            carregarEstadosCivis('estado_civil_id');
+                            
+                            
 
 
                         </script>
