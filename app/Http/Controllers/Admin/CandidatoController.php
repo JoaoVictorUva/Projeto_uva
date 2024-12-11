@@ -15,8 +15,8 @@ class CandidatoController extends Controller
     public function index() {
 
     
-        $busca = trim(request()->busca);
-
+        $busca = trim(preg_replace('/\D/', '', request()->busca));
+        
         $cursos = $this->cursos();
 
         $candidatos = Candidato::with('inscricao', 'inscricao.vaga.selecao')

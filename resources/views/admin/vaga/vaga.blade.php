@@ -12,7 +12,7 @@
                                 @endforeach     
                             </select>
         
-                            <button class="border border-gray-300 flex items-center justify-center gap-1 px-2 py-2 mt-0.5 rounded-md  " type="submit"><i class="fas fa-search dark:text-white"></i> Buscar</button>
+                            <button class="border border-gray-300 flex items-center justify-center gap-1 px-2 py-2 mt-0.5 rounded-md  dark:text-white" type="submit"><i class="fas fa-search dark:text-white"></i> Buscar</button>
 
                         </form>
                         

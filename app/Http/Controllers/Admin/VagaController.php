@@ -121,7 +121,7 @@ class VagaController extends Controller
         if ($inscricao) {
             return redirect()->route('vaga')->with('error', 'Vaga não pode ser excluída pois tem uma inscrição associada a ela!');
         } else {
-            $selecao->delete();
+            $vaga->delete();
             return redirect()->route('vaga')->with('success', 'Vaga excluída com sucesso.');
         }
 
