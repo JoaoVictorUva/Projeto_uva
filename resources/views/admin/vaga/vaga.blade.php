@@ -69,9 +69,7 @@
                         <thead class="border-t bg-transparent dark:bg-transparent my-2">
                             <tr class="border-b border-gray-300 ">
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Seleção</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Cargo</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Curso</td>
-                                <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Area</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Tipo de concorrẽncia</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Valor da Inscrição</td>
                                 <td class="px-4 text-left text-gray-500 dark:text-white py-2 whitespace-nowrap">Total de vagas</td>
@@ -83,27 +81,11 @@
                             @foreach($vagas as $vaga)
                                 <tr class="border-b border-gray-300 bg-transparent hover:bg-gray-200 dark:bg-transparent">
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->selecao->titulo }}</td>
-                                    
-                                    <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
-                                        @foreach($cargos as $cargo)
-                                            @if($vaga->cargo_id == $cargo['id'])
-                                                {{ $cargo['descricao'] }}
-                                            @endif
-                                        @endforeach
-                                    </td>
 
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
                                         @foreach($cursos as $curso)
                                             @if($vaga->curso_id == $curso['id'])
                                                 {{ $curso['descricao'] }}
-                                            @endif
-                                        @endforeach
-                                    </td>
-
-                                    <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
-                                        @foreach($areas as $area)
-                                            @if($vaga->area_id == $area['id'])
-                                                {{ $area['descricao'] }}
                                             @endif
                                         @endforeach
                                     </td>
