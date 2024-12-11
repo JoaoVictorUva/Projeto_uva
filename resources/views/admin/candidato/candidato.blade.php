@@ -67,7 +67,7 @@
                                         {{ $candidato->nome_completo }}
                                     </td>
 
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->inscricao->vaga->selecao->titulo ?? 'Nao existe inscricao para esse candidato' }}</td>
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->inscricao->vaga->selecao->titulo ?? '-' }}</td>
                                     <td class="px-4 py-2 dark:text-white whitespace-nowrap">
                                         @foreach($cursos as $curso)
                                             @if($candidato->inscricao?->vaga?->curso_id == $curso['id'])
@@ -75,7 +75,7 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->inscricao->vaga->tipo_concorrencia ?? 'Nao existe inscricao para esse candidato'}}</td>
+                                    <td class="px-4 py-2 dark:text-white whitespace-nowrap">{{ $candidato->inscricao->vaga->tipo_concorrencia ?? '-'}}</td>
                                     
 
                                     
