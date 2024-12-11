@@ -81,11 +81,27 @@
                             @foreach($vagas as $vaga)
                                 <tr class="border-b border-gray-300 bg-transparent hover:bg-gray-200 dark:bg-transparent">
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">{{ $vaga->selecao->titulo }}</td>
+                                    
+                                    <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
+                                        @foreach($cargos as $cargo)
+                                            @if($vaga->cargo_id == $cargo['id'])
+                                                {{ $cargo['descricao'] }}
+                                            @endif
+                                        @endforeach
+                                    </td>
 
                                     <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
                                         @foreach($cursos as $curso)
                                             @if($vaga->curso_id == $curso['id'])
                                                 {{ $curso['descricao'] }}
+                                            @endif
+                                        @endforeach
+                                    </td>
+
+                                    <td class="px-4 py-2 dark:text-white  whitespace-nowrap">
+                                        @foreach($areas as $area)
+                                            @if($vaga->area_id == $area['id'])
+                                                {{ $area['descricao'] }}
                                             @endif
                                         @endforeach
                                     </td>
