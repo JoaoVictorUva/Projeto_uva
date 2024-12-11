@@ -42,10 +42,10 @@ class VagaController extends Controller
 
 
         $validacao = $request->validate([
-            'selecao_id' => 'required|exists:selecoes,selecao_id', 
-            'cargo_id' => 'required|integer',            
+            'selecao_id' => 'required|unique:vagas|exists:selecoes,selecao_id', 
+            'cargo_id' => 'integer',            
             'curso_id' => 'required|integer',           
-            'area_id' => 'required|integer',             
+            'area_id' => 'integer',             
             'tipo_concorrencia' => 'required|string|max:255',
             'valor_inscricao' => 'required',
             'total_vagas' => 'required|integer|min:1',            
@@ -53,7 +53,7 @@ class VagaController extends Controller
         ]);
 
         $valorSemMascara = preg_replace('/\D/', '', $validacao['valor_inscricao']);
-
+        
         $vaga = new Vaga();
         $vaga->selecao_id = $request->selecao_id;
         $vaga->cargo_id = $request->cargo_id;

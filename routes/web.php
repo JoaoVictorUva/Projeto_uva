@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InscricaoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,18 @@ Route::get('/estados-civis', function () {
         ['id' => 5, 'descricao' => 'União Estável'],
     ]);
 });
+
+//Route::prefix('teste')->group(function () {
+    Route::get('/teste', [InscricaoController::class, 'index'])->name('teste');
+
+    Route::get('/create', [InscricaoController::class, 'createAdd'])->name('inscricao.create');
+    Route::post('/store', [InscricaoController::class, 'store'])->name('inscricao.store');
+    
+    Route::delete('/destroy/{id}', [InscricaoController::class, 'destroy'])->name('inscricao.destroy');
+    
+    Route::get('/{id}', [InscricaoController::class, 'edit'])->name('inscricao.edit');
+    Route::put('/update/{id}', [InscricaoController::class, 'update'])->name('inscricao.update');
+//});
+
 
 require __DIR__.'/auth.php';

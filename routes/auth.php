@@ -81,17 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/update/{id}', [VagaController::class, 'update'])->name('vaga.update');
     });
 
-    Route::prefix('inscricao')->group(function () {
-        Route::get('/', [InscricaoController::class, 'index'])->name('inscricao');
-
-        Route::get('/create', [InscricaoController::class, 'createAdd'])->name('inscricao.create');
-        Route::post('/store', [InscricaoController::class, 'store'])->name('inscricao.store');
-        
-        Route::delete('/destroy/{id}', [InscricaoController::class, 'destroy'])->name('inscricao.destroy');
-        
-        Route::get('/{id}', [InscricaoController::class, 'edit'])->name('inscricao.edit');
-        Route::put('/update/{id}', [InscricaoController::class, 'update'])->name('inscricao.update');
-    });
+    
 
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');

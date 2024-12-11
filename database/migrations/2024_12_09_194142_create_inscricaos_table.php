@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('vaga_id');
             $table->unsignedBigInteger('candidato_id');
             $table->date('data_inscricao');
-            $table->string('status_inscricao');
+            $table->boolean('status_inscricao');
         });
     }
 

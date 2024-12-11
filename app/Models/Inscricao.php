@@ -25,6 +25,6 @@ class Inscricao extends Model
 
     public function candidato()
     {
-        return $this->belongsTo(Vaga::class, 'candidato_id', 'candidato_id');
+        return $this->belongsTo(Candidato::class, 'candidato_id', 'candidato_id');
     }
 }
