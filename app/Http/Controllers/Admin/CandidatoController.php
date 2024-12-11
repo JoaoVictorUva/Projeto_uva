@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Http;
 class CandidatoController extends Controller
 {
     public function index() {
+
     
-        $busca = preg_replace('/\D/', '', request()->busca);
+        $busca = trim(request()->busca);
 
         $cursos = $this->cursos();
 
         $candidatos = Candidato::with('inscricao', 'inscricao.vaga.selecao')
             ->when( isset($busca) && !empty($busca) ,function($query) use($busca){
                 $query->where('nome_completo','like', '%' . $busca . '%')
-                ->orWhere('cpf', $busca);
+                ->orWhere('cpf','like', '%' . $busca . '%');
             })->paginate(20);
 
         return view('admin.candidato.candidato', compact('candidatos', 'busca', 'cursos'));
