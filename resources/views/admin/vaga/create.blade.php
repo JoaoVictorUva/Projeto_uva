@@ -13,7 +13,7 @@
                             <select id="selecao_id" name="selecao_id"  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="">Selecione uma Seleção</option>
                                 @foreach ($selecoes as $selecao)
-                                    <option value="{{ $selecao->selecao_id , old('selecao_id') }}">{{ $selecao->titulo }}</option>
+                                    <option value="{{ $selecao->selecao_id }}" @if(old('selecao_id') == $selecao->selecao_id) selected @endif>{{ $selecao->titulo }}</option>
                                 @endforeach
                             </select>
                             @error('selecao_id')
