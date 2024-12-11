@@ -68,10 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var dataIncricaoInicio = document.getElementById('inscricao_inicio');
     var dataIncricaoFim = document.getElementById('inscricao_fim');
 
+
     mask.mask(dataElement);
 
     mask.mask(dataIncricaoInicio);
     mask.mask(dataIncricaoFim);
+
 
     var mask = new Inputmask('99/99/9999', {
         greedy: false,  // Evita que a máscara preencha com '_'
@@ -83,8 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var dataIncricaoInicio = document.querySelectorAll('#inscricao_inicio');
     var dataIncricaoFim = document.querySelectorAll('#inscricao_fim');
+    var dataIncricao = document.getElementsByClassName('data_inscricao');
+
+    console.log(dataIncricao).value;
 
     mask.mask(dataIncricaoInicio);
     mask.mask(dataIncricaoFim);
+    mask.mask(dataIncricao);
 
 });
