@@ -14,7 +14,7 @@ class VagaController extends Controller
 {
     public function index() 
     {   
-        $busca = request()->busca;
+        $busca = trim(request()->busca);
 
         $cursos = $this->cursos();
         $cargos = $this->cargos();
